@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wyRbLca1D6SIzXk5LU5Wj+zeMme6Gcv6jdJGQ9oBhSE0iwJkYFiAcg2b36c3fgMY/UrpSIC/8JADM1IKlupxpw==",
+  "dgSpecHash": "NW0eEJREJ1zlpOXeLtpZ4FOGRaiSfAu1sE+InwDxe3qde1Td8uZ48nOts2utR95h7qpAv061Elq5bBXWviSHhA==",
   "success": true,
-  "projectFilePath": "E:\\FinalProject_VisionPlus_HiringWeb\\Hiring.Web_FinalProject_VisionPlus_ASP.NetCore\\Hiring.Web_FinalProject_VisionPlus_ASP.NetCore.csproj",
+  "projectFilePath": "E:\\Elghad.Software\\FinalProject_HiringWeb\\Hiring.Web_FinalProject_VisionPlus_ASP.NetCore\\Hiring.Web_FinalProject_VisionPlus_ASP.NetCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\khatib\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\khatib\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pas/6yr7JhiivEsxAWQAxlaRupjVuWOoXTJ5IdSOInIOqL9v9HB/OU/Rbp3RtMFElrWaiGFeq9KBZHsjYiUvPg==",
+  "dgSpecHash": "l/xlx53DFWPYAnYeYK63T/FFJSqasXyBEG+Lp0P2YqZPO8vfzJDp6w3P5Fl+30JsmNkPAyTa3Q96TRCfTu0OEg==",
   "success": true,
-  "projectFilePath": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.Services\\HiringWeb.Services.csproj",
+  "projectFilePath": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.Services\\HiringWeb.Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\khatib\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\khatib\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

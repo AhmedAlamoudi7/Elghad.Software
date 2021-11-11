@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.DataBase\\HiringWeb.DataBase.csproj": {}
+    "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.DataBase\\HiringWeb.DataBase.csproj": {}
   },
   "projects": {
-    "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj": {
+    "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj",
+        "projectUniqueName": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj",
         "projectName": "HiringWeb.Core",
-        "projectPath": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj",
+        "projectPath": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj",
         "packagesPath": "C:\\Users\\khatib\\.nuget\\packages\\",
-        "outputPath": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.Core\\obj\\",
+        "outputPath": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\khatib\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -60,18 +60,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.DataBase\\HiringWeb.DataBase.csproj": {
+    "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.DataBase\\HiringWeb.DataBase.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.DataBase\\HiringWeb.DataBase.csproj",
+        "projectUniqueName": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.DataBase\\HiringWeb.DataBase.csproj",
         "projectName": "HiringWeb.DataBase",
-        "projectPath": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.DataBase\\HiringWeb.DataBase.csproj",
+        "projectPath": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.DataBase\\HiringWeb.DataBase.csproj",
         "packagesPath": "C:\\Users\\khatib\\.nuget\\packages\\",
-        "outputPath": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.DataBase\\obj\\",
+        "outputPath": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.DataBase\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\khatib\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -88,8 +88,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj": {
-                "projectPath": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj"
+              "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj": {
+                "projectPath": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj"
               }
             }
           }
@@ -152,7 +152,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

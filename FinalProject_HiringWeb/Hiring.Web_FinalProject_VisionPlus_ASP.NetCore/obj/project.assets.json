@@ -11023,11 +11023,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\FinalProject_VisionPlus_HiringWeb\\Hiring.Web_FinalProject_VisionPlus_ASP.NetCore\\Hiring.Web_FinalProject_VisionPlus_ASP.NetCore.csproj",
+      "projectUniqueName": "E:\\Elghad.Software\\FinalProject_HiringWeb\\Hiring.Web_FinalProject_VisionPlus_ASP.NetCore\\Hiring.Web_FinalProject_VisionPlus_ASP.NetCore.csproj",
       "projectName": "Hiring.Web_FinalProject_VisionPlus_ASP.NetCore",
-      "projectPath": "E:\\FinalProject_VisionPlus_HiringWeb\\Hiring.Web_FinalProject_VisionPlus_ASP.NetCore\\Hiring.Web_FinalProject_VisionPlus_ASP.NetCore.csproj",
+      "projectPath": "E:\\Elghad.Software\\FinalProject_HiringWeb\\Hiring.Web_FinalProject_VisionPlus_ASP.NetCore\\Hiring.Web_FinalProject_VisionPlus_ASP.NetCore.csproj",
       "packagesPath": "C:\\Users\\khatib\\.nuget\\packages\\",
-      "outputPath": "E:\\FinalProject_VisionPlus_HiringWeb\\Hiring.Web_FinalProject_VisionPlus_ASP.NetCore\\obj\\",
+      "outputPath": "E:\\Elghad.Software\\FinalProject_HiringWeb\\Hiring.Web_FinalProject_VisionPlus_ASP.NetCore\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\khatib\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -11044,11 +11044,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.DataBase\\HiringWeb.DataBase.csproj": {
-              "projectPath": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.DataBase\\HiringWeb.DataBase.csproj"
+            "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.DataBase\\HiringWeb.DataBase.csproj": {
+              "projectPath": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.DataBase\\HiringWeb.DataBase.csproj"
             },
-            "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.Services\\HiringWeb.Services.csproj": {
-              "projectPath": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.Services\\HiringWeb.Services.csproj"
+            "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.Services\\HiringWeb.Services.csproj": {
+              "projectPath": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.Services\\HiringWeb.Services.csproj"
             }
           }
         }
@@ -11106,7 +11106,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

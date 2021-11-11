@@ -115,11 +115,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj",
+      "projectUniqueName": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj",
       "projectName": "HiringWeb.Core",
-      "projectPath": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj",
+      "projectPath": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj",
       "packagesPath": "C:\\Users\\khatib\\.nuget\\packages\\",
-      "outputPath": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.Core\\obj\\",
+      "outputPath": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\khatib\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -168,7 +168,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

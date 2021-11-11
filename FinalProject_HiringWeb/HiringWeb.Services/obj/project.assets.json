@@ -9455,11 +9455,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.Services\\HiringWeb.Services.csproj",
+      "projectUniqueName": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.Services\\HiringWeb.Services.csproj",
       "projectName": "HiringWeb.Services",
-      "projectPath": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.Services\\HiringWeb.Services.csproj",
+      "projectPath": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.Services\\HiringWeb.Services.csproj",
       "packagesPath": "C:\\Users\\khatib\\.nuget\\packages\\",
-      "outputPath": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.Services\\obj\\",
+      "outputPath": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.Services\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\khatib\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9476,11 +9476,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj": {
-              "projectPath": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj"
+            "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj": {
+              "projectPath": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.Core\\HiringWeb.Core.csproj"
             },
-            "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.DataBase\\HiringWeb.DataBase.csproj": {
-              "projectPath": "E:\\FinalProject_VisionPlus_HiringWeb\\HiringWeb.DataBase\\HiringWeb.DataBase.csproj"
+            "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.DataBase\\HiringWeb.DataBase.csproj": {
+              "projectPath": "E:\\Elghad.Software\\FinalProject_HiringWeb\\HiringWeb.DataBase\\HiringWeb.DataBase.csproj"
             }
           }
         }
@@ -9530,7 +9530,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
