@@ -1,0 +1,145 @@
+﻿body {
+    font-weight: bold;
+}
+
+.Webfooter {
+    text-align: center;
+}
+
+/*table tbody tr td.tab_col_padding {
+    padding-top: 19px;
+}
+*/
+img.Img_Profile_body {
+    width: 394px;
+    height: 250px;
+    margin-top: 7px;
+}
+
+img.Img_Profile_PageIndex {
+    width: 200px;
+    height: 114px;
+}
+
+table tbody tr td.tab_col_paddingNotImg {
+    padding-top: 13px;
+}
+
+.SearchBox, .SearchBoxOrder {
+    width: 150px;
+    transition: width 0.4s ease-in-out;
+}
+
+    .SearchBox:focus {
+        width: 350px;
+    }
+
+    .SearchBoxOrder:focus {
+        width: 300px;
+    }
+
+.card.card-custom > .card-header .card-title, .card.card-custom > .card-header .card-title .card-label,
+.aside-menu .menu-nav > .menu-item > .menu-heading .menu-text, .aside-menu .menu-nav > .menu-item > .menu-link .menu-text,
+select option {
+    font-weight: bold;
+}
+
+.table {
+    color: black;
+    font-weight: 600;
+}
+
+    .table thead td, .table thead th {
+        font-size: 16px;
+    }
+
+.form-control, .btn.btn-primary, a.btn-success, input.btn-success, .btn-info, .btn.btn-secondary, .btn.btn-danger {
+    font-weight: bold;
+}
+
+.form-group label {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.toast-message {
+    padding-right: 30px;
+    font-weight: bold;
+}
+
+.Label_ProfileImg {
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+.WebLogo {
+    width: 93px;
+    margin-right: 26px;
+    margin-bottom: 10px;
+}
+
+.CardHomePage {
+    padding: 4px;
+    text-align: center;
+    padding-bottom: 0;
+}
+
+.ImgCardHome {
+    height: 180px;
+    /*  width: 282px;*/
+}
+
+.btn i {
+    padding-left: 0;
+}
+
+.DropdownMenuTable {
+    width: 20px;
+    padding-right: 17px;
+}
+
+    .DropdownMenuTable li a {
+        color: black;
+        font-size: 16px;
+    }
+
+canvas {
+    margin: auto
+}
+
+.ActiveWeb {
+    background: red;
+}
+
+.dropdown-toggle.btn:after, .dropdown-toggle.nav-link:after {
+    display: none;
+}
+
+.NotificationMenu {
+    min-width: 310px;
+    max-height: 300px;
+    padding: 10px;
+}
+
+    .NotificationMenu li a {
+        color: black;
+        transition: 0.3s ease-in-out;
+    }
+
+        .NotificationMenu li a:hover {
+            color: #9f0404;
+            padding-right: 3px;
+        }
+.NotificationsNum {
+    background: red;
+    color: black;
+    border-radius: 50%;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-weight: bold;
+    position: relative;
+    left: -7px;
+    bottom: 10px;
+}

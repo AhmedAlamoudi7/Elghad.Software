@@ -1,0 +1,127 @@
+﻿@model HiringOrderDetailsViewModel
+@{
+    ViewData["Title"] = "تفاصيل الطلب";
+    int Counter = 0;
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h2 class="card-label" data-aos="fade-left">
+                <span class="d-block pt-5 font-size-h2-lg">تفاصيل الطلب</span>
+            </h2>
+        </div>
+    </div>
+    <hr />
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped"
+                   style=" border: 5px solid #788da3; text-align: center; background: #1f518fad;">
+                <thead style="background: #a94442; color: #eee038f2; font-size: 27px;">
+                    <tr>
+                        <td>العنوان</td>
+                        <td>التفاصيل</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr data-aos="fade-left">
+                        <td>اسم الوظيفة</td>
+                        <td>@Model.Title</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>حالة الوظيفة</td>
+                        <td>@Model.OrderStatus</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>تاريخ نشر الوظيفة</td>
+                        <td>@Model.CreateAt.ToString("yyyy-MM-dd")</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>وقت انتهاء التقدم</td>
+                        <td>@Model.Deadline.ToString("yyyy-MM-dd")</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>اسم الشركة</td>
+                        <td>@Model.Orgnization.Name</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>البريد الالكتروني للشركة</td>
+                        <td>@Model.Orgnization.Email</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>جوال الشركة</td>
+                        <td>@Model.Orgnization.PhoneNumber</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>عنوان الشركة</td>
+                        <td>@Model.Orgnization.Address</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>المرفقات</td>
+
+                        @if (Model.AllAttachments.Count > 0)
+                        {
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="MenuProcess" data-bs-toggle="dropdown" aria-expanded="false">
+                                        عرض المرفقات
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="MenuProcess" style="padding:10px;">
+                                        @foreach (var file in Model.AllAttachments)
+                                        {
+                                            Counter++;
+                                            <li>
+                                                <a target="_blank" href="~/AllFiles/@file.AttachmentUrl" style="color:black">إضغط لعرض مرفق @Counter</a>
+                                            </li>
+
+                                        }
+                                    </ul>
+                                </div>
+                            </td>
+
+                        }
+                        else
+                        {
+                            <td>لا يوجد مرفقات</td>
+                        }
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group col-md-12" data-aos="fade-left">
+            @if (Model.OrderStatus == StatusHiringOrderEnum.Pending)
+            {
+
+                <a class="btn btn-primary" href="~/HiringOrder/EvaluationOrder?Id=@Model.Id
+                  &status=@StatusHiringOrderEnum.Approved">
+                    قبول
+                </a>
+
+
+                <a class="btn btn-primary" href="~/HiringOrder/EvaluationOrder?Id=@Model.Id
+                  &status=@StatusHiringOrderEnum.Rejected">
+                    رفض
+                </a>
+
+            }
+            else if (Model.OrderStatus == StatusHiringOrderEnum.Approved)
+            {
+                <a class="btn btn-primary" href="~/HiringOrder/EvaluationOrder?Id=@Model.Id
+                  &status=@StatusHiringOrderEnum.Rejected">
+                    رفض
+                </a>
+            }
+            else if (Model.OrderStatus == StatusHiringOrderEnum.Rejected)
+            {
+                <a class="btn btn-primary" href="~/HiringOrder/EvaluationOrder?Id=@Model.Id
+                  &status=@StatusHiringOrderEnum.Approved">
+                    قبول
+                </a>
+            }
+            <div><a asp-action="Index" asp-controller="HiringOrder" class="btn btn-primary mt-2">الرجوع للوظائف</a></div>
+        </div>
+    </div>
+</div>

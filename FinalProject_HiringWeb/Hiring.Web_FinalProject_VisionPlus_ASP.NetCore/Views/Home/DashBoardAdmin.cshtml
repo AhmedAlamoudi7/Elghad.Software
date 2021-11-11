@@ -1,0 +1,250 @@
+﻿@model MainDataDashBoardViewModel
+
+@{ ViewData["Title"] = "Home Page"; }
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h2 class="card-label">
+                <span class="d-block pt-5 font-size-h2-lg">شاشة ادارة الاحصائيات </span>
+            </h2>
+        </div>
+    </div>
+    
+    <div class="card-body">
+        <div class="row">
+
+            <div class="col-md-3 col-sm-6" data-aos="fade-left">
+                <div class="alert alert-info">
+                    <h3>اجمالي عدد المستخدمين</h3>
+                    <h4>@Model.NumberUsers</h4>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6" data-aos="fade-left">
+                <div class="alert alert-info">
+                    <h3>اجمالي عدد طلبات التوظيف</h3>
+                    <h4>@Model.NumberHiringOrders</h4>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6" data-aos="fade-left">
+                <div class="alert alert-info">
+                    <h3>اجمالي عدد المتقدمين</h3>
+                    <h4>@Model.NumberApplicants</h4>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6" data-aos="fade-left">
+                <div class="alert alert-info">
+                    <h3>اجمالي عدد المؤسسات</h3>
+                    <h4>@Model.NumberCompanys</h4>
+                </div>
+            </div>
+
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-lg-6 col-sm-12 mb-4" data-aos="fade-left">
+                <canvas id="userTypeChart" height="40vh" width="80vw">
+                </canvas>
+            </div>
+            <div class="col-lg-6 col-sm-12 mb-4" data-aos="fade-left">
+                <canvas id="hiringOrderTypeChart" height="40vh" width="80vw">
+                </canvas>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-lg-6 col-sm-12 mb-4" data-aos="fade-left">
+                <canvas id="hiringOrderPublishByMonthChart" height="40vh" width="80vw">
+                </canvas>
+            </div>
+            <div class="col-lg-6 col-sm-12 mb-4" data-aos="fade-left">
+                <canvas id="hiringOrderApplyingByMonthChart" height="40vh" width="80vw">
+                </canvas>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="https://cdnjs.com/libraries/Chart.js"></script>
+
+    <script>
+         var userTypeChart = document.getElementById('userTypeChart');
+         var hiringOrderTypeChart = document.getElementById('hiringOrderTypeChart');
+         var hiringOrderPublishByMonthChart = document.getElementById('hiringOrderPublishByMonthChart');
+         var hiringOrderApplyingByMonthChart = document.getElementById('hiringOrderApplyingByMonthChart');
+         var userTypeData = [];
+         var hiringOrderTypeData = [];
+         var hiringOrderPublishByMonthData = [];
+         var hiringOrderApplyingByMonthData= [];
+
+          $.ajax({
+              url: '@Url.Action("GetUserType", "Home")',
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              Cache: false,
+              success: function (Data) {
+                  $.each(Data, function (index, value) {
+                      userTypeData.push(Data[index])
+                      //console.log("Index" +index);
+                      //console.log("Value" + value);
+                  });
+             
+                  var myChart1 = new Chart(userTypeChart, {
+                      type: 'pie',
+                      data: {
+                          labels: ['المدراء', 'مدراء المؤسسات', 'المتقدمين'],
+                          datasets: [{
+                              label: '# of Votes',
+                              data: userTypeData,
+                              backgroundColor: [
+                                  'rgb(255, 99, 132)',
+                                  'rgb(54, 162, 235)',
+                                  'rgb(255, 206, 86)'
+                              ]
+                          }]
+                      },
+                      options: {
+                          title: { // This Label Will Be Show With Labels In datasets
+                              display: true,
+                              text: 'أنواع المستخدمين'
+                          }
+                      }
+                  });
+
+              }
+          });
+
+          $.ajax({
+              url: '@Url.Action("GethiringOrderTypeChart", "Home")',
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              Cache: false,
+              success: function (Data) {
+                  $(Data).each(function (index, value) {
+                      hiringOrderTypeData.push(value);
+                  });
+
+                  var myChart2 = new Chart(hiringOrderTypeChart, {
+                      type: 'pie',
+                      data: {
+                          labels: ['قيد الانتظار', 'مقبول', 'مرفوض'],
+                          datasets: [{
+                              label: '# of Votes',
+                              data: hiringOrderTypeData,
+                              backgroundColor: [
+                                  'rgb(255, 99, 132)',
+                                  'rgb(54, 162, 235)',
+                                  'rgb(255, 206, 86)'
+                              ]
+                          }]
+                      },
+                      options: {
+                          title: { // This Label Will Be Show
+                              display: true,
+                              text: 'حالات طلبات التوظيف'
+                          }
+                      }
+                  });
+
+              }
+          });
+
+          $.ajax({
+              url: '@Url.Action("GethiringOrderPublishByMonthChart", "Home")',
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              Cache: false,
+              success: function (Data) {
+                  $(Data).each(function (index, value) {
+                      hiringOrderPublishByMonthData.push(value);
+                  });
+
+                  var myChart3 = new Chart(hiringOrderPublishByMonthChart, {
+                      type: 'bar',
+                      data: {
+                          labels: ['يناير', 'فبراير', 'مارس', 'ابريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
+                          datasets: [{
+                              label: 'عدد الوظائف',
+                              data: hiringOrderPublishByMonthData,
+                              backgroundColor: [
+                                  'rgb(255, 99, 132)',
+                                  'rgb(54, 162, 235)',
+                                  'rgb(255, 206, 86)',
+                                  'rgb(255, 99, 142)',
+                                  'rgb(54, 162, 235)',
+                                  'rgb(255, 206, 86)',
+                                  'rgb(255, 99, 132)',
+                                  'rgb(54, 162, 235)',
+                                  'rgb(255, 206, 86)',
+                                  'rgb(255, 99, 132)',
+                                  'rgb(54, 162, 235)',
+                                  'rgb(255, 206, 86)'
+                              ]
+                          }]
+                      },
+                      options: {
+                          legend: { display: false }, // To Hide Label In dataset
+                          title: { // This Label Will Be Show
+                              display: true,
+                              text: 'عدد الوظائف المنشورة في كل شهر'
+                          }
+                      }
+                  });
+              }
+          });
+
+          $.ajax({
+              url: '@Url.Action("GethiringOrderApplyingByMonthChart", "Home")',
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              Cache: false,
+              success: function (Data) {
+                  $(Data).each(function (index, value) {
+                      hiringOrderApplyingByMonthData.push(value);
+                  });
+
+                  var myChart3 = new Chart(hiringOrderApplyingByMonthChart, {
+                      type: 'bar',
+                      data: {
+                          labels: ['يناير', 'فبراير', 'مارس', 'ابريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
+                          datasets: [{
+                              label: 'عدد المتقدمين',
+                              data: hiringOrderApplyingByMonthData,
+                              backgroundColor: [
+                                  'rgb(255, 99, 132)',
+                                  'rgb(54, 162, 235)',
+                                  'rgb(255, 206, 86)',
+                                  'rgb(255, 99, 142)',
+                                  'rgb(54, 162, 235)',
+                                  'rgb(255, 206, 86)',
+                                  'rgb(255, 99, 132)',
+                                  'rgb(54, 162, 235)',
+                                  'rgb(255, 206, 86)',
+                                  'rgb(255, 99, 132)',
+                                  'rgb(54, 162, 235)',
+                                  'rgb(255, 206, 86)'
+                              ]
+                          }]
+                      },
+                      options: {
+                          legend: { display: false }, // To Hide Label In dataset
+                          title: { // This Label Will Be Show
+                              display: true,
+                              text: 'عدد المتقدمين في كل شهر'
+                          }
+                      }
+                  });
+              }
+          });
+    </script>
+}

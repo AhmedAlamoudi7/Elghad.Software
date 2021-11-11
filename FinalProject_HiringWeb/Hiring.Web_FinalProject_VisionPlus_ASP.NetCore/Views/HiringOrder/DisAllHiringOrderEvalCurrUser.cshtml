@@ -1,0 +1,62 @@
+﻿@model List<GroupOrderToUser>
+@{
+    ViewData["Title"] = "DisAllHiringOrderCurrUser";
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title" data-aos="fade-left">
+            <h4 class="card-label">
+                <span class="d-block pt-5 font-size-h2-lg">@TempData["TitleDataUser"]</span>
+            </h4>
+        </div>
+    </div>
+    <hr />
+    <div class="card-body">
+        @if (Model.Any())
+        {
+            @foreach (var mod in Model)
+            {
+                if (mod.Title != StatusHiringOrderEnum.Pending)
+                {
+                    <h2 class="d-block pt-5 font-size-h2-lg text-center" style="font-weight:bold;" data-aos="fade-left">@mod.Title.ToString()</h2>
+                }
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped text-center mt-3">
+                        <thead>
+                            <tr class="bg-primary text-white">
+                                <td>إسم الوظيفة</td>
+                                <td>الشركة الناشرة</td>
+                                <td>البريد الإلكتروني</td>
+                                <td>وقت التقدم</td>
+                                <td>وقت إنتهاء التقدم</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var Order in mod.AllHiringOrders)
+                            {
+                                <tr data-aos="fade-down">
+                                    <td class="tab_col_padding">@Order.HiringOrder.Title</td>
+                                    <td class="tab_col_padding">@Order.HiringOrder.Orgnization.Name</td>
+                                    <td class="tab_col_padding">@Order.HiringOrder.Orgnization.Email</td>
+                                    <td class="tab_col_padding">@Order.CreateAt.ToString("yyyy-MM-dd")</td>
+                                    <td class="tab_col_padding">@Order.HiringOrder.Deadline.ToString("yyyy-MM-dd")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+
+        }
+        else
+        {
+            <div class="alert alert-info mt-3">عزيزي لا يوجد أي وظائف مقيَّمة!</div>
+        }
+        <div class="card-footer" data-aos="fade-left">
+            <a class="btn btn-success" asp-action="DisAllHiringOrderCurrUser">الرجوع للوظائف</a>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,87 @@
+﻿@model HiringOrderAddDto
+@{
+    ViewData["Title"] = "إضافة طلب";
+}
+@*@if (ViewBag.ResError != null)
+{
+    <div class="alert alert-danger col-md-12">@ViewBag.ResError</div>
+}*@
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h2 class="card-label">
+                <span class="d-block pt-5 font-size-h2-lg">إضافة طلب</span>
+            </h2>
+        </div>
+    </div>
+    <hr />
+    <div class="card-body">
+        <form class="form-group" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="form-group col-md-4" data-aos="fade-left">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-4" data-aos="fade-left">
+                    <label asp-for="Deadline"></label>
+                    <input asp-for="Deadline" class="form-control" />
+                    <span asp-validation-for="Deadline" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-4" data-aos="fade-left">
+                    <label asp-for="JobImg"></label>
+                    <input asp-for="JobImg" class="form-control" />
+                    <span asp-validation-for="JobImg" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-4" data-aos="fade-left">
+                    <label asp-for="Salary"></label>
+                    <input asp-for="Salary" class="form-control" />
+                    <span asp-validation-for="Salary" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-4" data-aos="fade-left">
+                    <label asp-for="OrgnizationId"></label>
+                    <select asp-for="OrgnizationId" class="form-control" asp-items="@ViewBag.AllOrg"></select>
+                    <span asp-validation-for="OrgnizationId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-4" data-aos="fade-left">
+                    <label asp-for="Attachments"></label>
+                    <input asp-for="Attachments" class="form-control" />
+                    <span asp-validation-for="Attachments" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label asp-for="Description"></label>
+                    <textarea asp-for="Description" id="DescCKEditor" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-12" data-aos="fade-left">
+                    <button type="submit" class="btn btn-primary">إضافة طلب</button>
+                    <a asp-action="Index" class="btn btn-primary">إلغاء</a>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        CKEDITOR.replace('DescCKEditor', {
+            language: 'ar'
+        });
+    </script>
+
+}
+
+
+

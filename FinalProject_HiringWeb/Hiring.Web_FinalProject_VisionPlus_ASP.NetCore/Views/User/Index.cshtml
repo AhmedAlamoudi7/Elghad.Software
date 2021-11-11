@@ -1,0 +1,214 @@
+﻿@model UserPaginationIndex
+
+@{
+    ViewData["Title"] = "عرض المستخدمين";
+    int numPage = Model.SentPageNum;
+    int x = 0;
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title" data-aos="fade-left">
+            <h2 class="card-label">
+                <span class="d-block pt-5 font-size-h2-lg">ادارة المستخدمين</span>
+            </h2>
+        </div>
+        <div class="card-toolbar" data-aos="fade-left">
+            <!--begin::Button-->
+            <a href="~/User/Add" title="اضافة مستخدم جديد" class="btn btn-info font-weight-bolder" style="margin-left:10px;">
+                <span class="svg-icon svg-icon-md">
+                    <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24" />
+                            <circle fill="#000000" cx="9" cy="15" r="6" />
+                            <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+                        </g>
+                    </svg>
+                    <!--end::Svg Icon-->
+                </span>اضافة مستخدم
+            </a>
+
+            <a href="~/User/Excel" title="تصدير Excel" class="btn btn-info font-weight-bolder" data-aos="fade-left">
+                <span class="svg-icon svg-icon-md">
+                    <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24" />
+                            <circle fill="#000000" cx="9" cy="15" r="6" />
+                            <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+                        </g>
+                    </svg>
+                    <!--end::Svg Icon-->
+                </span>تصدير Excel
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        @if (Model.DisplayUser.Any())
+        {
+
+            <form class="SentFormData form-group mt-3" asp-action="Index" method="get">
+                <div class="row">
+
+                    <input class="inputhiddent" name="Id" type="hidden" />
+
+                    <div class="SearchBoxResMarginB input-group col-md-6" data-aos="fade-left">
+                        <div class="form-outline">
+                            <input type="search" name="SearchWord" value="@ViewBag.SearchWord" class="SearchBoxOrder form-control"
+                                   placeholder="إبحث بإسم المستخدم أو البريد أو الجوال" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+
+                    <div class="input-group col-md-6" data-aos="fade-left">
+                        <button type="submit" class="btn btn-primary">
+                            إعرض
+                        </button>
+                        <select name="SelectSize" class="form-select form-control text-center">
+
+                            @if (ViewBag.SelectSize != null && ViewBag.SelectSize == 0)
+                            {
+                                <option value="" selected>*** إختر عدد الصفوف المعروضة ***</option>
+                            }
+                            else
+                            {
+                                <option value="" selected>إختر عدد الصفوف المعروضة في الجدول</option>
+                            }
+                            @if (ViewBag.SelectSize != null && ViewBag.SelectSize == 5)
+                            {
+                                <option value="5" selected>5</option>
+                            }
+                            else
+                            {
+                                <option value="5">5</option>
+                            }
+                            @if (ViewBag.SelectSize != null && ViewBag.SelectSize == 10)
+                            {
+                                <option value="10" selected>10</option>
+                            }
+                            else
+                            {
+                                <option value="10">10</option>
+                            }
+                            @if (ViewBag.SelectSize != null && ViewBag.SelectSize == 15)
+                            {
+                                <option value="5" selected>15</option>
+                            }
+                            else
+                            {
+                                <option value="15">15</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </form>
+
+            <div class="table-responsive SearchBoxResMarginB">
+                <table class="table table-bordered table-striped text-center mt-3">
+                    <thead>
+                        <tr class="bg-primary text-white">
+                            <td>إسم المستخدم</td>
+                            <td>البريد الإلكتروني</td>
+                            <td>رقم الجوال</td>
+                            <td>الصلاحيات</td>
+                            <td>العمليات</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var role in Model.DisplayUser)
+                        {
+                            <tr data-aos="fade-down">
+                                <td class="tab_col_padding">@role.FullName</td>
+                                <td class="tab_col_padding">@role.Email</td>
+                                <td class="tab_col_padding">@role.PhoneNumber</td>
+                                <td class="tab_col_padding">@role.AllRoles</td>
+                                <td class="tab_col_padding">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="MenuProcess" data-bs-toggle="dropdown" aria-expanded="false">
+                                            عرض العمليات
+                                        </button>
+                                        <ul class="dropdown-menu DropdownMenuTable" aria-labelledby="MenuProcess">
+                                            <li>
+                                                <a asp-action="Edit" asp-route-Id="@role.Id">تعديل</a>
+                                            </li>
+                                            <li>
+                                                <a style="cursor:pointer" onclick="showDetails(this)"
+                                                   data-ActionName="Delete"
+                                                   data-ControllerName="User"
+                                                   data-IdValue="@role.Id">حذف</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <ul class="pagination" data-aos="fade-left">
+
+                @if (numPage == 1)
+                {
+                    <li class="page-item"><button class="btn btn-info" value="0" disabled>السابق</button></li>
+                }
+                else
+                {
+                    numPage--;
+                    <li class="page-item"><button class="btn btn-info" value="@numPage">السابق</button></li>
+                    numPage++;
+                }
+
+                @for (int i = 1; i <= Model.NumberPage; i++)
+                {
+                    if (Model.SentPageNum == i)
+                    {
+                        <li class="page-item">
+                            <button class="btn btn-secondary active" value="@i">@i</button>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <button class="btn btn-secondary" value="@i">@i</button>
+                        </li>
+                    }
+
+                }
+                @if (numPage == Model.NumberPage)
+                {
+                    <li class="page-item"><button class="btn btn-info" value="0" disabled>التالي</button></li>
+                }
+                else
+                {
+                    numPage = numPage + 1;
+                    <li class="page-item"><button class="btn btn-info" value="@numPage">التالي</button></li>
+                }
+            </ul>
+        }
+        else
+        {
+            <div class="alert alert-info mt-3"> عزيزي المشرف لا يوجد أي مستخدمين !</div>
+            <div class="card-footer">
+                <a class="btn btn-success" asp-action="Index">الرجوع للمستخدمين</a>
+            </div>
+        }
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+        @*// To Show Error Message And Hide
+        if (@x == 1) {
+            $(".ShowThenHide").fadeIn().delay(3000).fadeOut(3000);
+             }*@
+       // To Get Value (Number) Pagination Button And Set To Input In Form And Sent Form With All Data
+        $(".pagination li button").click(function () {
+            var valuebtn = $(this).val();
+            $(".inputhiddent").val(valuebtn);
+            $(".SentFormData").submit();
+            });
+</script>
+

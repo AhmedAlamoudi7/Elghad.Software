@@ -1,0 +1,26 @@
+﻿@media(max-width: 974px) {
+    .MyNAv {
+        position:inherit;
+        left: 0;
+    }
+}
+@media(min-width: 975px) {
+    .MyNAv {
+        left: 40px;
+        color: orangered;
+    }
+}
+
+@media(min-width: 1160px) {
+    .MyNAv {
+        left: 100px;
+        color: orangered;
+    }
+}
+
+@media(min-width: 1400px) {
+    .MyNAv {
+        left: 80px;
+        color: orangered;
+    }
+}

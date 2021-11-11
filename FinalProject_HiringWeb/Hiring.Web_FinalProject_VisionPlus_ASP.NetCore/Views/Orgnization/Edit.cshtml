@@ -1,0 +1,117 @@
+﻿@model ErrorOrgnizeEdit
+@{
+    ViewData["Title"] = "تعديل بيانات الشركة";
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title" data-aos="fade-left">
+            <h2 class="card-label">
+                <span class="d-block pt-5 font-size-h2-lg">تعديل بيانات الشركة</span>
+            </h2>
+        </div>
+    </div>
+    <hr />
+    <div class="card-body">
+        <form class="form-group" method="post" enctype="multipart/form-data" id="myform">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <input asp-for="OrgnizationEditDto.Id" type="hidden" />
+                    <div class="form-group" data-aos="fade-left">
+                        <label asp-for="OrgnizationEditDto.Name"></label>
+                        <input asp-for="OrgnizationEditDto.Name" class="form-control" />
+                        <span asp-validation-for="OrgnizationEditDto.Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group " data-aos="fade-left">
+                        <label asp-for="OrgnizationEditDto.Email"></label>
+                        <input asp-for="OrgnizationEditDto.Email" class="form-control" />
+                        <span asp-validation-for="OrgnizationEditDto.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group " data-aos="fade-left">
+                        <label asp-for="OrgnizationEditDto.PhoneNumber"></label>
+                        <input asp-for="OrgnizationEditDto.PhoneNumber" class="form-control" />
+                        <span asp-validation-for="OrgnizationEditDto.PhoneNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group " data-aos="fade-left">
+                        <label asp-for="OrgnizationEditDto.FullName"></label>
+                        <input asp-for="OrgnizationEditDto.FullName" class="form-control" />
+                        <span asp-validation-for="OrgnizationEditDto.FullName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group " data-aos="fade-left">
+                        <label asp-for="OrgnizationEditDto.Address"></label>
+                        <input asp-for="OrgnizationEditDto.Address" class="form-control" />
+                        <span asp-validation-for="OrgnizationEditDto.Address" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group " data-aos="fade-left">
+                        <label asp-for="OrgnizationEditDto.WorkNature"></label>
+                        <textarea asp-for="OrgnizationEditDto.WorkNature" class="form-control"></textarea>
+                        <span asp-validation-for="OrgnizationEditDto.WorkNature" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    @* Start Div To Add ProfileImage To User*@
+                    <div class="form-group mt-4" data-aos="fade-left">
+                        @if (Model.OrgnizationEditDto.ProfileImgUser != null)
+                        {
+                            <img id="ProfileImg" class="Img_Profile_body img-fluid img-thumbnail "
+                                 src="data:image/*;base64,@(Convert.ToBase64String(Model.OrgnizationEditDto.ProfileImgUser)) " />
+                        }
+                        else
+                        {
+                            <img id="ProfileImg" class="Img_Profile_body img-fluid img-thumbnail"
+                                 src="~/Images/blank-profile.png" />
+                        }
+                        <label asp-for="OrgnizationEditDto.ProfileImgUser" class="d-block "></label>
+                        <input type="file" class="form-control mt-3 col-md-9"
+                               name="ProfileImage"
+                               onchange="document.getElementById('ProfileImg').src= window.URL.createObjectURL(this.files[0])" />
+                        <span asp-validation-for="OrgnizationEditDto.ProfileImgUser" class="text-danger"></span>
+                    </div>
+                    @* End Div To Add ProfileImage To User*@
+
+                    @* Start Display All Roles*@
+                    <div class="form-group  mt-5" data-aos="fade-left">
+                        <label class="form-check-label">عزيزي من فضلك إختر صلاحية أو أكثر :</label>
+                        @for (int i = 0; i < Model.OrgnizationEditDto.AllRoles.Count; i++)
+                        {
+                            <div class="form-check m-2">
+                                <input type="hidden" asp-for="OrgnizationEditDto.AllRoles[i].Name" />
+                                <input asp-for="OrgnizationEditDto.AllRoles[i].IsSelected"
+                                       type="checkbox" class="form-check-input" />
+                                <label class="form-check-label">
+                                    @Model.OrgnizationEditDto.AllRoles[i].Name
+                                </label>
+                            </div>
+                        }
+                        <span asp-validation-for="OrgnizationEditDto.AllRoles" class="text-danger"></span>
+                    </div>
+                    @* End Display All Roles*@
+
+                </div>
+
+                <div class="form-group col-sm-12" data-aos="fade-left">
+                    <button type="submit" class="btn btn-primary">تعديل بيانات الشركة</button>
+                    <a asp-action="Index" class="btn btn-primary">إلغاء</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        $("#myform input:checkbox").change(function () {
+            $("#myform input:checkbox").prop("checked", false);
+            $(this).prop("checked", true);
+        });
+    </script>
+}

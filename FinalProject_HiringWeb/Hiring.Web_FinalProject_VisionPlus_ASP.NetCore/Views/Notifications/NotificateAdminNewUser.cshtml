@@ -1,0 +1,50 @@
+﻿@model HiringWeb.Core.ModelaDB.UserApplicationViewModel
+@{
+    ViewData["Title"] = "تفاصيل المستخدم";
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h2 class="card-label" data-aos="fade-left">
+                <span class="d-block pt-5 font-size-h2-lg">تفاصيل المستخدم</span>
+            </h2>
+        </div>
+    </div>
+    <hr />
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped"
+                   style=" border: 5px solid #788da3; text-align: center; background: #1f518fad;">
+                <thead style="background: #a94442; color: #eee038f2; font-size: 27px;">
+                    <tr>
+                        <td>العنوان</td>
+                        <td>التفاصيل</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr data-aos="fade-left">
+                        <td>اسم المستخدم</td>
+                        <td>@Model.FullName</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>البريد الالكتروني</td>
+                        <td>@Model.Email</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>رقم جوال</td>
+                        <td>@Model.PhoneNumber</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>السيرة الذاتية</td>
+                        <td><a target="_blank" href="~/AllFiles/@Model.Cv" style="color:black;">إضغط لعرض CV</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group col-md-12" data-aos="fade-left">
+            <div><a asp-action="Index" asp-controller="User" class="btn btn-primary mt-2">الرجوع للمستخدمين</a></div>
+        </div>
+    </div>
+</div>

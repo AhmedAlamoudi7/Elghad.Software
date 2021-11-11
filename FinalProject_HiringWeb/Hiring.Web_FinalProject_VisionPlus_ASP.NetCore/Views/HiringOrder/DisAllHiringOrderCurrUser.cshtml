@@ -1,0 +1,75 @@
+﻿@model List<GetApplyingOrdersToUserViewModel>
+@{
+    ViewData["Title"] = "DisAllHiringOrderCurrUser";
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title" data-aos="fade-left">
+            <h4 class="card-label">
+                <span class="d-block pt-5 font-size-h2-lg">الوظائف المتقدم لها</span>
+            </h4>
+        </div>
+    </div>
+    <hr />
+    <div class="card-body">
+        @if (Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped text-center mt-3">
+                    <thead>
+                        <tr class="bg-primary text-white">
+                            <td>إسم الوظيفة</td>
+                            <td>الشركة الناشرة</td>
+                            <td>البريد الإلكتروني</td>
+                            <td>وقت التقدم</td>
+                            <td>وقت إنتهاء التقدم</td>
+                            <td>التقييم</td>
+                            <td>العمليات</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var Order in Model)
+                        {
+                            <tr data-aos="fade-down">
+                                <td class="tab_col_padding">@Order.HiringOrder.Title</td>
+                                <td class="tab_col_padding">@Order.HiringOrder.Orgnization.Name</td>
+                                <td class="tab_col_padding">@Order.HiringOrder.Orgnization.Email</td>
+                                <td class="tab_col_padding">@Order.CreateAt.ToString("yyyy-MM-dd")</td>
+                                <td class="tab_col_padding">@Order.HiringOrder.Deadline.ToString("yyyy-MM-dd")</td>
+                                <td class="tab_col_padding">@Order.StatusType</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="MenuProcess" data-bs-toggle="dropdown" aria-expanded="false">
+                                            عرض العمليات
+                                        </button>
+                                        <ul class="dropdown-menu DropdownMenuTable" aria-labelledby="MenuProcess">
+                                            <li><a href="~/HiringOrder/DetailsHiringOrderApplicant?UserId=@Order.UserId&OrderId=@Order.HiringOrderId">تفاصيل</a></li>
+                                            <li>
+                                            @*<a href="~/HiringOrder/DeleteHiringOrderApplicant?UserId=@Order.UserId&OrderId=@Order.HiringOrderId">حذف</a>*@
+                                            <a style="cursor:pointer" onclick="showDetails(this)"
+                                                   data-ActionName="DeleteHiringOrderApplicant"
+                                                   data-ControllerName="HiringOrder"
+                                                   data-UserId="@Order.UserId"
+                                                   data-OrderId="@Order.HiringOrderId">حذف</a>
+                                            </li>
+                                        </ul>
+                                    </div>  
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info mt-3">عزيزي لا يوجد أي طلبات تقدمت لها!</div>
+        }
+        <div class="card-footer" data-aos="fade-left">
+            <a class="btn btn-success" asp-action="Index" asp-controller="Home">الرجوع للصفحة الرئيسية</a>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,116 @@
+﻿@model List<HiringOrderuser>
+@{
+    ViewData["Title"] = "GetUsersApplyingOrder";
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h4 class="card-label">
+                @if (Model.Any())
+                {
+                    <span class="d-block pt-5 font-size-h2-lg" data-aos="fade-left">المتقدمين لوظيفة/ @Model[0].HiringOrder.Title</span>
+                }
+                else
+                {
+                    <span class="d-block pt-5 font-size-h2-lg" data-aos="fade-left">المتقدمين للوظيفة</span>
+                }
+            </h4>
+        </div>
+    </div>
+    <hr />
+    <div class="card-body">
+        @if (Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped text-center mt-3">
+                    <thead>
+                        <tr class="bg-primary text-white">
+                            <td>إسم المتقدم</td>
+                            <td>البريد الإلكتروني</td>
+                            <td>رقم الجوال</td>
+                            <td>وقت التقدم</td>
+                            <td>التقييم</td>
+                            <td>السيرة الذاتية</td>
+                            <td>العمليات</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var role in Model)
+                        {
+
+                            <tr data-aos="fade-down">
+                                <td class="tab_col_padding">@role.User.FullName</td>
+                                <td class="tab_col_padding">@role.User.Email</td>
+                                <td class="tab_col_padding">@role.User.PhoneNumber</td>
+                                <td class="tab_col_padding">@role.CreateAt.ToString("yyyy-MM-dd")</td>
+                                <td class="tab_col_padding">@role.StatusType</td>
+                                <td class="tab_col_padding">
+                                    <a target="_blank" href="~/AllFiles/@role.User.Cv">إضغط لعرض CV</a>
+                                </td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="MenuProcess" data-bs-toggle="dropdown" aria-expanded="false">
+                                            عرض العمليات
+                                        </button>
+                                        <ul class="dropdown-menu DropdownMenuTable" aria-labelledby="MenuProcess">
+                                            @if (role.StatusType == StatusHiringOrderEnum.Pending)
+                                            {
+                                                <li>
+                                                    <a href="~/HiringOrder/EvaluationApplicants?UserId=@role.UserId
+                                                                                &HiringOrdId=@role.HiringOrderId
+                                                                                &status=@StatusHiringOrderEnum.Approved
+                                                                                &ViewName=GetUsersApplyingOrder">
+                                                        قبول
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/HiringOrder/EvaluationApplicants?UserId=@role.UserId
+                                                                                &HiringOrdId=@role.HiringOrderId
+                                                                                &status=@StatusHiringOrderEnum.Rejected
+                                                                                &ViewName=GetUsersApplyingOrder">
+                                                        رفض
+                                                    </a>
+                                                </li>
+                                            }
+                                            else if (role.StatusType == StatusHiringOrderEnum.Approved)
+                                            {
+                                                <li>
+                                                    <a href="~/HiringOrder/EvaluationApplicants?UserId=@role.UserId
+                                                                                &HiringOrdId=@role.HiringOrderId
+                                                                                &status=@StatusHiringOrderEnum.Rejected
+                                                                                &ViewName=GetUsersApplyingOrder">
+                                                        رفض
+                                                    </a>
+                                                </li>
+                                            }
+                                            else if (role.StatusType == StatusHiringOrderEnum.Rejected)
+                                            {
+                                                <li>
+                                                    <a  href="~/HiringOrder/EvaluationApplicants?UserId=@role.UserId
+                                                                                &HiringOrdId=@role.HiringOrderId
+                                                                                &status=@StatusHiringOrderEnum.Approved
+                                                                                &ViewName=GetUsersApplyingOrder">
+                                                        قبول
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info mt-3">عزيزي لا يوجد أي متقدمين إلى الآن!</div>
+        }
+        <div class="card-footer" data-aos="fade-left">
+            <a class="btn btn-primary"  asp-action="Index">الرجوع للمتقدمين</a>
+        </div>
+    </div>
+</div>
+

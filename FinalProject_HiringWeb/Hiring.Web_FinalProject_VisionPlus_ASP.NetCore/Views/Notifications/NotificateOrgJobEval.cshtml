@@ -1,0 +1,54 @@
+﻿@model HiringOrderDetailsViewModel
+@{
+    ViewData["Title"] = "تفاصيل الطلب";
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h2 class="card-label" data-aos="fade-left">
+                <span class="d-block pt-5 font-size-h2-lg">تفاصيل الطلب</span>
+            </h2>
+        </div>
+    </div>
+    <hr />
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped"
+                   style=" border: 5px solid #788da3; text-align: center; background: #1f518fad;">
+                <thead style="background: #a94442; color: #eee038f2; font-size: 27px;">
+                    <tr>
+                        <td>العنوان</td>
+                        <td>التفاصيل</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr data-aos="fade-left">
+                        <td>اسم الوظيفة</td>
+                        <td>@Model.Title</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>حالة الوظيفة</td>
+                        <td>@Model.OrderStatus</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>التقييم بواسطة</td>
+                        <td>مشرف الموقع</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>تاريخ نشر الوظيفة</td>
+                        <td>@Model.CreateAt.ToString("yyyy-MM-dd")</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>وقت انتهاء التقدم</td>
+                        <td>@Model.Deadline.ToString("yyyy-MM-dd")</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group col-md-12" data-aos="fade-left">
+            <div><a asp-action="Index" asp-controller="HiringOrder" class="btn btn-primary mt-2">الرجوع للوظائف</a></div>
+        </div>
+    </div>
+</div>

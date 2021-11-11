@@ -1,0 +1,110 @@
+﻿@model HiringOrderDetailsViewModel
+
+@{
+    ViewData["Title"] = "تفاصيل طلب التوظيف";
+    int counter = 0;
+    var daedline = Model.Deadline.ToString("yyyy-MM-dd");
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0" data-aos="fade-left">
+        <div class="card-title">
+            <h2 class="card-label">
+                <span class="d-block pt-5 font-size-h2-lg">تفاصيل طلب التوظيف</span>
+            </h2>
+        </div>
+    </div>
+    <hr />
+    <div class="card-body">
+        <div class="row">
+            <div class="form-group col-md-3" data-aos="fade-left">
+                <label>عنوان الوظيفة</label>
+                <input asp-for="Title" class="form-control" readonly />
+            </div>
+            <div class="form-group col-md-3" data-aos="fade-left">
+                <label>حالة الوظيفة</label>
+                <input asp-for="OrderStatus" class="form-control" readonly />
+            </div>
+            <div class="form-group col-md-3" data-aos="fade-left">
+                <label>وقت إنتهاء الوظيفة</label>
+                <input asp-for="@daedline" class="form-control" readonly />
+            </div>
+
+            <div class="form-group col-md-3" data-aos="fade-left">
+                <label>الراتب الشهري للوظيفة</label>
+                <input asp-for="Salary" class="form-control" readonly />
+            </div>
+
+            <div class="form-group col-md-3" data-aos="fade-left">
+                <label>إسم الشركة</label>
+                <input asp-for="Orgnization.Name" class="form-control" readonly />
+            </div>
+            <div class="form-group col-md-3" data-aos="fade-left">
+                <label>البريد الإلكتروني للشركة</label>
+                <input asp-for="Orgnization.Email" class="form-control" readonly />
+            </div>
+            <div class="form-group col-md-3" data-aos="fade-left">
+                <label>جوال الشركة</label>
+                <input asp-for="Orgnization.PhoneNumber" class="form-control" readonly />
+            </div>
+            <div class="form-group col-md-3" data-aos="fade-left">
+                <label>عنوان الشركة</label>
+                <input asp-for="Orgnization.Address" class="form-control" readonly />
+            </div>
+
+            <div class="form-group col-md-12">
+                <label>وصف طلب التوظيف</label>
+                <hr />
+                <p>
+                    @Html.Raw(Model.Description)
+                </p>
+                <hr />
+            </div>
+        </div>
+
+        @if (Model.AllAttachments.Count > 0)
+        {
+            <label class="d-block pt-5 font-size-h4-lg" data-aos="fade-left">مرفقات طلب التوظيف</label>
+            <div class="table-responsive mb-5">
+                <table class="table table-bordered table-striped text-center">
+                    <thead>
+                        <tr class="bg-primary text-white">
+                            <td>الصنف</td>
+                            <td>تفاصيله</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var file in Model.AllAttachments)
+                        {
+                            counter++;
+
+                            <tr data-aos="fade-left">
+                                <td>الملف @counter</td>
+                                <td>
+                                    <a target="_blank" href="~/AllFiles/@file.AttachmentUrl">إضغط لعرض المرفق</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        }
+
+        @if (TempData["ActionDetailsJob"] != null)
+        {
+            <div class="form-group col-md-12" data-aos="fade-left">
+                <a class="btn btn-primary" asp-action="Index" asp-controller="Home">الرجوع للصفحة الرئيسية</a>
+                <a class="btn btn-primary" href="~/HiringOrder/ApplyingJob?Id=@Model.Id">تقدم الآن</a>
+            </div>
+        }
+        else
+        {
+            <div class="form-group col-md-12" data-aos="fade-left">
+                <a class="btn btn-primary" asp-action="Edit" asp-route-Id="@Model.Id">تعديل الطلب</a>
+                <a class="btn btn-primary" asp-action="Index">الرجوع للطلبات</a>
+            </div>
+        }
+
+    </div>
+</div>

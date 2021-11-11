@@ -1,0 +1,65 @@
+﻿@model NotificateDetailsApplicantViewModel
+@{
+    ViewData["Title"] = "تفاصيل الطلب";
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h2 class="card-label" data-aos="fade-left">
+                <span class="d-block pt-5 font-size-h2-lg">تفاصيل الطلب</span>
+            </h2>
+        </div>
+    </div>
+    <hr />
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped"
+                   style=" border: 5px solid #788da3; text-align: center; background: #1f518fad;">
+                <thead style="background: #a94442; color: #eee038f2; font-size: 27px;">
+                    <tr>
+                        <td>العنوان</td>
+                        <td>التفاصيل</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-aos="fade-left">
+                        <td>اسم الوظيفة</td>
+                        <td>@Model.HiringOrder.Title</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>تقييم الطلب</td>
+                        <td>@Model.StatusType</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>وقت التقدم</td>
+                        <td>@Model.CreateAt.ToString("yyyy-MM-dd")</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>الراتب</td>
+                        <td>@Model.HiringOrder.Salary</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>الشركة المتقدم لها</td>
+                        <td>@Model.HiringOrder.Orgnization.Name</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>بريد الشركة</td>
+                        <td>@Model.HiringOrder.Orgnization.Email</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>جوال الشركة</td>
+                        <td>@Model.HiringOrder.Orgnization.PhoneNumber</td>
+                    </tr>
+                    <tr data-aos="fade-left">
+                        <td>عنوان الشركة</td>
+                        <td>@Model.HiringOrder.Orgnization.Address</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group col-md-12" data-aos="fade-left">
+            <a asp-action="DisAllHiringOrderCurrUser" asp-controller="HiringOrder" class="btn btn-primary">الرجوع للوظائف</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿@media(max-width:570px)
+{
+    .SearchBoxOrder:focus {
+        width: 230px;
+    }
+}
+@media(max-width:750px) {
+    .SearchBoxResMarginB {
+        margin-bottom: 15px;
+    }
+}
+@media(min-width:990px) {
+    .UserInfoMobile {
+        display: none;
+    }
+}

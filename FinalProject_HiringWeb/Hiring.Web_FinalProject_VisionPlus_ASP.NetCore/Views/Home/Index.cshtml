@@ -1,0 +1,104 @@
+﻿@model AllHiringOrdHomePagePagination
+
+@{ ViewData["Title"] = "Home Page";
+    int numPage = Model.SentPageNum;
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title" data-aos="fade-left">
+            <h2 class="card-label">
+                <span class="d-block pt-5 font-size-h2-lg">الشاشة الرئيسية</span>
+            </h2>
+        </div>
+    </div>
+    <div class="card-body">
+        @if (Model.AllHiringOrders.Any())
+        {
+            <form class="SentFormData" asp-action="Index" method="get">
+                <input class="inputhiddent" name="PageNum" type="hidden" />
+                <div class="row">
+                    <div class="input-group col-md-4 mb-5" data-aos="fade-left">
+                        <div class="form-outline">
+                            <input type="search" name="SearchWord" value="@ViewBag.SearchWord" class="SearchBoxOrder form-control"
+                                   placeholder="إبحث بإسم الوظيفة ....." />
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    @foreach (var Order in Model.AllHiringOrders)
+                    {
+                        <div class="CardHomePage card col-lg-3 col-md-4 col-sm-6 mb-5" data-aos="fade-left">
+                            <img class="ImgCardHome card-img-top" src="~/AllFiles/@Order.HiringImg" alt="Hiring Order Image">
+                            <div class="card-body">
+                                <h5 class="card-title mt-3 font-weight-bolder">@Order.Title</h5>
+                                <p class="card-text">إنتهاء التقدم: @Order.Deadline.ToString("dd-MM-yyyy (hh:mm tt)")</p>
+                                <hr />
+                                <a href="~/HiringOrder/DetailsJob/@Order.Id" class="btn btn-primary">تفاصيل الوظيفة</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    <ul class="pagination ml-3" data-aos="fade-left">
+                        @if (numPage == 1)
+                        {
+                            <li class="page-item"><button class="btn btn-info" value="0" disabled>السابق</button></li>
+                        }
+                        else
+                        {
+                            numPage--;
+                            <li class="page-item"><button class="btn btn-info" value="@numPage">السابق</button></li>
+                            numPage++;
+                        }
+
+                        @for (int i = 1; i <= Model.NumberPages; i++)
+                        {
+                            if (Model.SentPageNum == i)
+                            {
+                                <li class="page-item">
+                                    <button class="btn btn-secondary active" value="@i">@i</button>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <button class="btn btn-secondary" value="@i">@i</button>
+                                </li>
+                            }
+
+                        }
+                        @if (numPage == Model.NumberPages)
+                        {
+                            <li class="page-item"><button class="btn btn-info" value="0" disabled>التالي</button></li>
+                        }
+                        else
+                        {
+                            numPage = numPage + 1;
+                            <li class="page-item"><button class="btn btn-info" value="@numPage">التالي</button></li>
+                        }
+                    </ul>
+                </div>
+            </form>
+        }
+        else
+        {
+            <div class="alert alert-info mt-3"> عزيزي لم يتم نشر أي وظائف !</div>
+        }
+    </div>
+</div>
+@section Scripts{
+    <script>
+        // To Get Value (Number) Pagination Button And Set To Input In Form And Sent Form With All Data
+        $(".pagination li button").click(function () {
+            var valuebtn = $(this).val();
+            $(".inputhiddent").val(valuebtn);
+            $(".SentFormData").submit();
+        });
+    </script>
+}
+

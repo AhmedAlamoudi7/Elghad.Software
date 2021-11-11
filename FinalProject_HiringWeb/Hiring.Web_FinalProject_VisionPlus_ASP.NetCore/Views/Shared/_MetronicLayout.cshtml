@@ -1,0 +1,893 @@
+﻿@{ string Action = null;
+    string Controller = null;
+    string currentURL = null;
+    try
+    {
+        Action = ViewContext.RouteData.Values["action"].ToString().ToLower();
+        Controller = ViewContext.RouteData.Values["Controller"].ToString().ToLower();
+        currentURL = Controller + "/" + Action;
+
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine(e.Message);
+    }
+}
+
+<html lang="ar" direction="rtl" style="direction: rtl;">
+<head>
+    <base href="../../../">
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link rel="icon" href="~/title_logo.png"
+          type="image/x-icon">ا
+
+    <meta name="description" content="Initialized via remote ajax json data" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="canonical" href="https://keenthemes.com/metronic" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+
+    <link href="~/assets/plugins/global/plugins.bundle.rtl.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/plugins/custom/prismjs/prismjs.bundle.rtl.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/style.bundle.rtl.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/themes/layout/header/base/light.rtl.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/themes/layout/header/menu/light.rtl.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/themes/layout/brand/light.rtl.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/themes/layout/aside/light.rtl.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="/LogoIcon.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200&display=swap" rel="stylesheet">
+
+    <link href="~/css/Elghad.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    @*AON Animatiom*@
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/3.0.0-beta.6/aos.css" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .datatable.datatable-default.datatable-head-custom > .datatable-table > .datatable-foot .datatable-row > .datatable-cell > span, .datatable.datatable-default.datatable-head-custom > .datatable-table > .datatable-head .datatable-row > .datatable-cell > span {
+            color: #3699FF !important;
+            font-size: 1rem !important;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: .1rem;
+        }
+
+        .datatable-cell {
+            padding: 5px !important;
+        }
+
+        .d-flex flex-column flex-row-fluid wrapper {
+            padding-top: 40px !important;
+        }
+
+        .content d-flex flex-column flex-column-fluid {
+            padding-top: 0px !important;
+        }
+
+        .menu-text {
+            margin-right: 15px !important;
+            font-size: 14px !important;
+        }
+
+        .menu-link {
+            padding-bottom: 10px !important;
+        }
+
+        #kt_wrapper {
+            padding-top: 70px !important;
+        }
+
+        .card-body {
+            padding-top: 5px !important;
+        }
+    </style>
+
+    <link rel="stylesheet" href="~/css/WebStyle.css" />
+    <link href="~/MediaResponsive/MediaStyle.css" rel="stylesheet" />
+</head>
+
+<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
+
+    @* Start Setting Mobile*@
+    <div class="page-loader page-loader-logo">
+        @*Logo Setting Mobile*@
+        @*<img alt="Logo" class="max-h-90px" src="" />*@
+        <div class="spinner spinner-primary"></div>
+    </div>
+
+
+    <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed" data-aos="fade-left">
+        <a href="/">
+            @*Logo Setting Mobile*@
+            <img alt="Logo" width="62px" src="~/Images/LogoWeb.png" />
+        </a>
+        <div class="d-flex align-items-center">
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                @* Mobile Start Display Notifications To All UsersType(Admin, OrgAdmin, Applicant)*@
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                            id="NotificationsMobile" data-bs-toggle="dropdown" aria-expanded="false"
+                            style=" background: content-box; border: none;">
+                        <span class="NotificationsNum"></span>
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <ul class="dropdown-menu NotificationMenu" aria-labelledby="NotificationsMobile">
+                    </ul>
+                </div>
+                @* Mobile End Display Notifications To All UsersType(Admin, OrgAdmin, Applicant)*@
+
+
+
+                <button class="btn p-0 burger-icon burger-icon-left" id="kt_aside_mobile_toggle" style="margin-right: 12px;">
+                    <span></span>
+                </button>
+                @*kt_header_mobile_toggle*@
+                <button class="btn p-0 burger-icon ml-4" id="kt_header_mobile_toggle">
+                    @*kt_quick_user_toggle*@
+                    <span></span>
+                </button>
+
+                @*<button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">
+                        <span class="svg-icon svg-icon-xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                    <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                    <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
+                                </g>
+                            </svg>
+                        </span>
+                    </button>*@
+            }
+            else
+            {
+                <a href="~/Identity/Account/Login" class="smallcolor btn btn-lg font-weight-bolder">
+                    تسجيل الدخول
+                </a>
+                <a href="~/User/Add" class="btn btn-lg font-weight-bolder">
+                    الإشتراك
+                </a>
+                var x = ViewBag.Email;
+            }
+        </div>
+    </div>
+    @* End Setting Mobile*@
+
+
+
+
+    <div class="d-flex flex-column flex-root">
+        <div class="d-flex flex-row flex-column-fluid page">
+
+            @*Poartrait DashBoard Right*@
+            <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
+
+                <div class="brand flex-column-auto" id="kt_brand">
+                    <a href="index.html" class="brand-logo">
+                        @*Logo Setting Computer*@
+                        @*<img alt="Logo" width="85%" src="" />*@
+                    </a>
+                    <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
+                        <span class="svg-icon svg-icon svg-icon-xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                    <path d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z" fill="#000000" fill-rule="nonzero" transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999)" />
+                                    <path d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999)" />
+                                </g>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+                <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
+                    <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
+                        <ul class="menu-nav">
+                            <li class="menu-item menu-item-active" aria-haspopup="true">
+                                @*menu-item-active*@
+                                <a href="~/Home/LandingPage" class="menu-link">
+                                    <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                        <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/Clothes/Crown.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <polygon points="0 0 24 0 24 24 0 24" />
+                                                <path d="M11.2600599,5.81393408 L2,16 L22,16 L12.7399401,5.81393408 C12.3684331,5.40527646 11.7359848,5.37515988 11.3273272,5.7466668 C11.3038503,5.7680094 11.2814025,5.79045722 11.2600599,5.81393408 Z" fill="#000000" opacity="0.3" />
+                                                <path d="M12.0056789,15.7116802 L20.2805786,6.85290308 C20.6575758,6.44930487 21.2903735,6.42774054 21.6939717,6.8047378 C21.8964274,6.9938498 22.0113578,7.25847607 22.0113578,7.535517 L22.0113578,20 L16.0113578,20 L2,20 L2,7.535517 C2,7.25847607 2.11493033,6.9938498 2.31738608,6.8047378 C2.72098429,6.42774054 3.35378194,6.44930487 3.7307792,6.85290308 L12.0056789,15.7116802 Z" fill="#000000" />
+                                            </g>
+                                        </svg><!--end::Svg Icon-->
+                                    </span>
+                                    <span class="menu-text">الرئيسية</span>
+                                </a>
+                            </li>
+
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="~/Home/Index" class="menu-link">
+                                    <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                        <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/Shopping/Wallet2.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <rect fill="#000000" opacity="0.3" x="2" y="2" width="10" height="12" rx="2" />
+                                                <path d="M4,6 L20,6 C21.1045695,6 22,6.8954305 22,8 L22,20 C22,21.1045695 21.1045695,22 20,22 L4,22 C2.8954305,22 2,21.1045695 2,20 L2,8 C2,6.8954305 2.8954305,6 4,6 Z M18,16 C19.1045695,16 20,15.1045695 20,14 C20,12.8954305 19.1045695,12 18,12 C16.8954305,12 16,12.8954305 16,14 C16,15.1045695 16.8954305,16 18,16 Z" fill="#000000" />
+                                            </g>
+                                        </svg><!--end::Svg Icon-->
+                                    </span>
+                                    <span class="menu-text">الوظائف</span>
+                                </a>
+                            </li>
+
+                            @if (ViewBag.TypeUsre == "Admin")
+                            {
+                                <li class="menu-item menu-item" aria-haspopup="true">
+                                    <a href="~/Home/DashBoardAdmin" class="menu-link">
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                            <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/Shopping/Chart-bar2.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <rect fill="#000000" opacity="0.3" x="17" y="4" width="3" height="13" rx="1.5" />
+                                                    <rect fill="#000000" opacity="0.3" x="12" y="9" width="3" height="8" rx="1.5" />
+                                                    <path d="M5,19 L20,19 C20.5522847,19 21,19.4477153 21,20 C21,20.5522847 20.5522847,21 20,21 L4,21 C3.44771525,21 3,20.5522847 3,20 L3,4 C3,3.44771525 3.44771525,3 4,3 C4.55228475,3 5,3.44771525 5,4 L5,19 Z" fill="#000000" fill-rule="nonzero" />
+                                                    <rect fill="#000000" opacity="0.3" x="7" y="11" width="3" height="6" rx="1.5" />
+                                                </g>
+                                            </svg><!--end::Svg Icon-->
+                                        </span>
+                                        <span class="menu-text">ادارة الاحصائيات</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item menu-item" aria-haspopup="true">
+                                    <a href="~/Role/Index" class="menu-link">
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                            <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/General/Lock.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <mask fill="white">
+                                                        <use xlink:href="#path-1" />
+                                                    </mask>
+                                                    <g />
+                                                    <path d="M7,10 L7,8 C7,5.23857625 9.23857625,3 12,3 C14.7614237,3 17,5.23857625 17,8 L17,10 L18,10 C19.1045695,10 20,10.8954305 20,12 L20,18 C20,19.1045695 19.1045695,20 18,20 L6,20 C4.8954305,20 4,19.1045695 4,18 L4,12 C4,10.8954305 4.8954305,10 6,10 L7,10 Z M12,5 C10.3431458,5 9,6.34314575 9,8 L9,10 L15,10 L15,8 C15,6.34314575 13.6568542,5 12,5 Z" fill="#000000" />
+                                                </g>
+                                            </svg><!--end::Svg Icon-->
+                                        </span>
+                                        <span class="menu-text"> ادارة الصلاحيات</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item menu-item" aria-haspopup="true">
+                                    <a href="~/User/Index" class="menu-link">
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                            <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/General/User.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                                    <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                                    <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
+                                                </g>
+                                            </svg><!--end::Svg Icon-->
+                                        </span>
+                                        <span class="menu-text"> ادارة المستخدمين</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item menu-item" aria-haspopup="true">
+                                    <a href="~/Orgnization/Index" class="menu-link">
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                            <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/Clothes/Briefcase.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path d="M5.84026576,8 L18.1597342,8 C19.1999115,8 20.0664437,8.79732479 20.1528258,9.83390904 L20.8194924,17.833909 C20.9112219,18.9346631 20.0932459,19.901362 18.9924919,19.9930915 C18.9372479,19.9976952 18.8818364,20 18.8264009,20 L5.1735991,20 C4.0690296,20 3.1735991,19.1045695 3.1735991,18 C3.1735991,17.9445645 3.17590391,17.889153 3.18050758,17.833909 L3.84717425,9.83390904 C3.93355627,8.79732479 4.80008849,8 5.84026576,8 Z M10.5,10 C10.2238576,10 10,10.2238576 10,10.5 L10,11.5 C10,11.7761424 10.2238576,12 10.5,12 L13.5,12 C13.7761424,12 14,11.7761424 14,11.5 L14,10.5 C14,10.2238576 13.7761424,10 13.5,10 L10.5,10 Z" fill="#000000" />
+                                                    <path d="M10,8 L8,8 L8,7 C8,5.34314575 9.34314575,4 11,4 L13,4 C14.6568542,4 16,5.34314575 16,7 L16,8 L14,8 L14,7 C14,6.44771525 13.5522847,6 13,6 L11,6 C10.4477153,6 10,6.44771525 10,7 L10,8 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                                </g>
+                                            </svg><!--end::Svg Icon-->
+                                        </span>
+                                        <span class="menu-text"> ادارة الشركات</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item menu-item" aria-haspopup="true">
+                                    <a href="~/HiringOrder/Index" class="menu-link">
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                            <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/Files/Selected-file.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                                    <path d="M4.85714286,1 L11.7364114,1 C12.0910962,1 12.4343066,1.12568431 12.7051108,1.35473959 L17.4686994,5.3839416 C17.8056532,5.66894833 18,6.08787823 18,6.52920201 L18,19.0833333 C18,20.8738751 17.9795521,21 16.1428571,21 L4.85714286,21 C3.02044787,21 3,20.8738751 3,19.0833333 L3,2.91666667 C3,1.12612489 3.02044787,1 4.85714286,1 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                                    <path d="M6.85714286,3 L14.7364114,3 C15.0910962,3 15.4343066,3.12568431 15.7051108,3.35473959 L20.4686994,7.3839416 C20.8056532,7.66894833 21,8.08787823 21,8.52920201 L21,21.0833333 C21,22.8738751 20.9795521,23 19.1428571,23 L6.85714286,23 C5.02044787,23 5,22.8738751 5,21.0833333 L5,4.91666667 C5,3.12612489 5.02044787,3 6.85714286,3 Z M8,12 C7.44771525,12 7,12.4477153 7,13 C7,13.5522847 7.44771525,14 8,14 L15,14 C15.5522847,14 16,13.5522847 16,13 C16,12.4477153 15.5522847,12 15,12 L8,12 Z M8,16 C7.44771525,16 7,16.4477153 7,17 C7,17.5522847 7.44771525,18 8,18 L11,18 C11.5522847,18 12,17.5522847 12,17 C12,16.4477153 11.5522847,16 11,16 L8,16 Z" fill="#000000" fill-rule="nonzero" />
+                                                </g>
+                                            </svg><!--end::Svg Icon-->
+                                        </span>
+                                        <span class="menu-text">ادارة طلبات التوظيف</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item menu-item" aria-haspopup="true">
+                                    <a href="~/HiringOrder/AllHiringOrderUserToAdmin" class="menu-link">
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                            <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/Design/Union.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path d="M8,9 L8,6.18181818 C8,4.76751186 8.76751186,4 10.1818182,4 L17.8181818,4 C19.2324881,4 20,4.76751186 20,6.18181818 L20,13.8181818 C20,15.2324881 19.2324881,16 17.8181818,16 L15,16 L15,18.8181818 C15,20.2324881 14.2324881,21 12.8181818,21 L5.18181818,21 C3.76751186,21 3,20.2324881 3,18.8181818 L3,11.1818182 C3,9.76751186 3.76751186,9 5.18181818,9 L8,9 Z" fill="#000000" fill-rule="nonzero" />
+                                                </g>
+                                            </svg><!--end::Svg Icon-->
+                                        </span>
+                                        <span class="menu-text">ادارة المتقدمين</span>
+                                    </a>
+                                </li>
+                            }
+
+                            @if (ViewBag.TypeUsre == "OrgnisationAdmin")
+                            {
+                                <li class="menu-item menu-item" aria-haspopup="true">
+                                    <a href="~/HiringOrder/DashBoardOrgnization" class="menu-link">
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                            <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/Design/Union.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path d="M8,9 L8,6.18181818 C8,4.76751186 8.76751186,4 10.1818182,4 L17.8181818,4 C19.2324881,4 20,4.76751186 20,6.18181818 L20,13.8181818 C20,15.2324881 19.2324881,16 17.8181818,16 L15,16 L15,18.8181818 C15,20.2324881 14.2324881,21 12.8181818,21 L5.18181818,21 C3.76751186,21 3,20.2324881 3,18.8181818 L3,11.1818182 C3,9.76751186 3.76751186,9 5.18181818,9 L8,9 Z" fill="#000000" fill-rule="nonzero" />
+                                                </g>
+                                            </svg><!--end::Svg Icon-->
+                                        </span>
+                                        <span class="menu-text">ادارة الإحصائيات</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item menu-item" aria-haspopup="true">
+                                    <a href="~/HiringOrder/Index" class="menu-link">
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                            <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/Design/Union.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path d="M8,9 L8,6.18181818 C8,4.76751186 8.76751186,4 10.1818182,4 L17.8181818,4 C19.2324881,4 20,4.76751186 20,6.18181818 L20,13.8181818 C20,15.2324881 19.2324881,16 17.8181818,16 L15,16 L15,18.8181818 C15,20.2324881 14.2324881,21 12.8181818,21 L5.18181818,21 C3.76751186,21 3,20.2324881 3,18.8181818 L3,11.1818182 C3,9.76751186 3.76751186,9 5.18181818,9 L8,9 Z" fill="#000000" fill-rule="nonzero" />
+                                                </g>
+                                            </svg><!--end::Svg Icon-->
+                                        </span>
+                                        <span class="menu-text">ادارة طلبات التوظيف</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item menu-item" aria-haspopup="true">
+                                    <a href="~/HiringOrder/DisplayEvalOrdToOrg" class="menu-link">
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                            <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/Design/Union.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path d="M8,9 L8,6.18181818 C8,4.76751186 8.76751186,4 10.1818182,4 L17.8181818,4 C19.2324881,4 20,4.76751186 20,6.18181818 L20,13.8181818 C20,15.2324881 19.2324881,16 17.8181818,16 L15,16 L15,18.8181818 C15,20.2324881 14.2324881,21 12.8181818,21 L5.18181818,21 C3.76751186,21 3,20.2324881 3,18.8181818 L3,11.1818182 C3,9.76751186 3.76751186,9 5.18181818,9 L8,9 Z" fill="#000000" fill-rule="nonzero" />
+                                                </g>
+                                            </svg><!--end::Svg Icon-->
+                                        </span>
+                                        <span class="menu-text">ادارة الطلبات المقيَّمة</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item menu-item" aria-haspopup="true">
+                                    <a href="~/HiringOrder/DisplayNotEvalOrdToOrg" class="menu-link">
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                            <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/Design/Union.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path d="M8,9 L8,6.18181818 C8,4.76751186 8.76751186,4 10.1818182,4 L17.8181818,4 C19.2324881,4 20,4.76751186 20,6.18181818 L20,13.8181818 C20,15.2324881 19.2324881,16 17.8181818,16 L15,16 L15,18.8181818 C15,20.2324881 14.2324881,21 12.8181818,21 L5.18181818,21 C3.76751186,21 3,20.2324881 3,18.8181818 L3,11.1818182 C3,9.76751186 3.76751186,9 5.18181818,9 L8,9 Z" fill="#000000" fill-rule="nonzero" />
+                                                </g>
+                                            </svg><!--end::Svg Icon-->
+                                        </span>
+                                        <span class="menu-text">ادارة الطلبات الغير المقيَّمة</span>
+                                    </a>
+                                </li>
+                            }
+
+                            @if (ViewBag.TypeUsre == "Applicant")
+                            {
+                                <li class="menu-item menu-item" aria-haspopup="true">
+                                    <a href="~/HiringOrder/DisAllHiringOrderCurrUser" class="menu-link">
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                            <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/Design/Union.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path d="M8,9 L8,6.18181818 C8,4.76751186 8.76751186,4 10.1818182,4 L17.8181818,4 C19.2324881,4 20,4.76751186 20,6.18181818 L20,13.8181818 C20,15.2324881 19.2324881,16 17.8181818,16 L15,16 L15,18.8181818 C15,20.2324881 14.2324881,21 12.8181818,21 L5.18181818,21 C3.76751186,21 3,20.2324881 3,18.8181818 L3,11.1818182 C3,9.76751186 3.76751186,9 5.18181818,9 L8,9 Z" fill="#000000" fill-rule="nonzero" />
+                                                </g>
+                                            </svg><!--end::Svg Icon-->
+                                        </span>
+                                        <span class="menu-text">ادارة الوظائف المتقدم لها</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item menu-item" aria-haspopup="true">
+                                    <a href="~/HiringOrder/DisAllHiringOrderEvalCurrUser" class="menu-link">
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                            <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/Design/Union.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path d="M8,9 L8,6.18181818 C8,4.76751186 8.76751186,4 10.1818182,4 L17.8181818,4 C19.2324881,4 20,4.76751186 20,6.18181818 L20,13.8181818 C20,15.2324881 19.2324881,16 17.8181818,16 L15,16 L15,18.8181818 C15,20.2324881 14.2324881,21 12.8181818,21 L5.18181818,21 C3.76751186,21 3,20.2324881 3,18.8181818 L3,11.1818182 C3,9.76751186 3.76751186,9 5.18181818,9 L8,9 Z" fill="#000000" fill-rule="nonzero" />
+                                                </g>
+                                            </svg><!--end::Svg Icon-->
+                                        </span>
+                                        <span class="menu-text">ادارة الوظائف المقيَّمة</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item menu-item" aria-haspopup="true">
+                                    <a href="~/HiringOrder/DisAllHiringOrderNotEvalCurrUser" class="menu-link">
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                            <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/Design/Union.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path d="M8,9 L8,6.18181818 C8,4.76751186 8.76751186,4 10.1818182,4 L17.8181818,4 C19.2324881,4 20,4.76751186 20,6.18181818 L20,13.8181818 C20,15.2324881 19.2324881,16 17.8181818,16 L15,16 L15,18.8181818 C15,20.2324881 14.2324881,21 12.8181818,21 L5.18181818,21 C3.76751186,21 3,20.2324881 3,18.8181818 L3,11.1818182 C3,9.76751186 3.76751186,9 5.18181818,9 L8,9 Z" fill="#000000" fill-rule="nonzero" />
+                                                </g>
+                                            </svg><!--end::Svg Icon-->
+                                        </span>
+                                        <span class="menu-text">ادارة الوظائف قيد الإنتظار</span>
+                                    </a>
+                                </li>
+
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            @*Page Header To Main Page Top*@
+            <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+                <div id="kt_header" class="header header-fixed">
+
+                    <div class="topbar">
+                        <div class="topbar-item">
+                            <div data-aos="fade-left">
+                                <a href="~/Home/Index">
+                                    <img src="~/Images/LogoWeb.png" class="WebLogo">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid d-flex align-items-stretch justify-content-between">
+
+                        <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
+                            <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
+                                <div class="p-10 UserInfoMobile">
+                                    <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
+                                        <h3 class="font-weight-bold m-0">
+                                            معلومات المستخدم
+                                        </h3>
+                                    </div>
+                                    <div class="offcanvas-content pr-5 mr-n5">
+                                        <!--begin::Header-->
+                                        <div class="d-flex align-items-center mt-5">
+                                            <div class="symbol symbol-100 mr-5">
+                                                @if (ViewBag.ProfileImg != null)
+                                                {
+                                                    <div class="symbol-label" style="background-image: url(data:image/*;base64,@(Convert.ToBase64String(ViewBag.ProfileImg)))"></div> }
+                                                else
+                                                {
+                                                    if (ViewBag.TypeUsre == "Admin")
+                                                    {
+                                                        <div class="symbol-label">
+                                                            <img src="~/Images/AdminImg.jpg" style=" width: 100%; height: 100%;" />
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="symbol-label">
+                                                            <img src="~/Images/blank-profile.png" style=" width: 100%; height: 100%;" />
+                                                        </div>
+                                                    }
+                                                }
+                                                <i class="symbol-badge bg-success"></i>
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">@ViewBag.FullName</a>
+                                                <div class="text-muted mt-1">@ViewBag.TypeUsre</div>
+                                                <div class="navi mt-2">
+                                                    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/Identity/Account/Login" )">
+                                                        <button type="submit" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">تسجيل الخروج</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Header-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @* Start Display Notifications To All UsersType(Admin, OrgAdmin, Applicant)*@
+                            <div class="topbar">
+                                <div class="topbar-item" data-aos="fade-left" style="position: absolute; left:219px; top: 16px;">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                id="Notifications" data-bs-toggle="dropdown" aria-expanded="false"
+                                                style=" background: content-box; border: none;">
+                                            <span class="NotificationsNum"></span>
+                                            <i class="fas fa-bell"></i>
+                                        </button>
+                                        <ul class="dropdown-menu NotificationMenu"
+                                            aria-labelledby="Notifications">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            @* End Display Notifications To All UsersType(Admin, OrgAdmin, Applicant)*@
+
+                            @*Top Bar To Displat UserName In Top Left Header In Main Page When Login*@
+
+                            <div class="topbar">
+                                <div class="topbar-item" data-aos="fade-left">
+                                    <div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
+                                        <span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">مرحباً بك/ </span>
+                                        <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">@ViewBag.FullName</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            @*Top Bar To Displat UserName In Top Left Header In Main Page When Login*@
+                            <div class="topbar" data-aos="fade-left">
+                                <div class="topbar-item">
+                                    <div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2" id="DataMobile">
+                                        <a href="~/Identity/Account/Login">
+                                            <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">تسجيل الدخول</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="topbar-item">
+                                    <div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2">
+                                        <a href="~/User/Add">
+                                            <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">الإشتراك</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                @*@****Render Body For All Views*****@
+                <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+
+                    <div class="d-flex flex-column-fluid">
+                        <div class="container">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+
+                @****Footer Main Page*****@
+                <div class="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer" data-aos="fade-left">
+                    <div class="container-fluid d-flex flex-column flex-md-row">
+                        <div class="text-dark order-2 order-md-1 m-auto">
+                            <a href="#" class="text-dark-75 text-hover-primary">
+                                جميع حقوق النشر محفوظة لصالح موقع الغد للوظائف @DateTime.Now.Year
+                            </a>
+                        </div>
+                        <div class="nav nav-dark">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @****User Panel In Left Main Page****@
+    <!-- begin::User Panel-->
+    <div id="kt_quick_user" class="offcanvas offcanvas-right p-10">
+        <!--begin::Header-->
+        <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
+            <h3 class="font-weight-bold m-0">
+                معلومات المستخدم
+            </h3>
+            <a class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
+                <i class="ki ki-close icon-xs text-muted"></i>
+            </a>
+        </div>
+        <!--end::Header-->
+        <!--begin::Content-->
+        @*src="data:image/*;base64,@(Convert.ToBase64String(Model.Input.ProfileImgUser)) "*@
+        <div class="offcanvas-content pr-5 mr-n5">
+            <!--begin::Header-->
+            <div class="d-flex align-items-center mt-5">
+                <div class="symbol symbol-100 mr-5">
+                    @if (ViewBag.ProfileImg != null)
+                    {
+                        <div class="symbol-label" style="background-image: url(data:image/*;base64,@(Convert.ToBase64String(ViewBag.ProfileImg)))"></div>
+                    }
+                    else
+                    {
+                        if (ViewBag.TypeUsre == "Admin")
+                        {
+                            <div class="symbol-label">
+                                <img src="~/Images/AdminImg.jpg" style=" width: 100%; height: 100%;" />
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="symbol-label">
+                                <img src="~/Images/blank-profile.png" style=" width: 100%; height: 100%;" />
+                            </div>
+                        }
+                    }
+                    <i class="symbol-badge bg-success"></i>
+                </div>
+                <div class="d-flex flex-column">
+                    <a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">@ViewBag.FullName</a>
+                    <div class="text-muted mt-1">@ViewBag.TypeUsre</div>
+                    <div class="navi mt-2">
+                        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/Identity/Account/Login" )">
+                            <button type="submit" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">تسجيل الخروج</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--end::Header-->
+        </div>
+        <!--end::Content-->
+    </div>
+    <!-- end::User Panel-->
+    <!--begin::Modal-->
+    <div class="modal fade" data-toggle="PopUp" data-target="modal" id="PopUp" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Select2 Examples</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div class="modal fade" id="Confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel">تحذير !</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p style="font-size: 18px">هل انت متاكد من العملية ؟</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
+                        <button type="submit" id="Confirm" class="btn btn-danger">نعم</button>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+    <div class="modal fade" id="Confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">تحذير !</h3>
+                </div>
+                <div class="modal-body">
+                    <p style="font-size: 18px">هل انت متاكد من العملية ؟</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary ExitPopUp" data-dismiss="modal">الغاء</button>
+                    <button class="btn btn-danger ConfirmDelete">نعم</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--end::Modal-->
+    <script>var KTAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1400 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#3699FF", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#8950FC", "warning": "#FFA800", "danger": "#F64E60", "light": "#E4E6EF", "dark": "#181C32" }, "light": { "white": "#ffffff", "primary": "#E1F0FF", "secondary": "#EBEDF3", "success": "#C9F7F5", "info": "#EEE5FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#3F4254", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#EBEDF3", "gray-300": "#E4E6EF", "gray-400": "#D1D3E0", "gray-500": "#B5B5C3", "gray-600": "#7E8299", "gray-700": "#5E6278", "gray-800": "#3F4254", "gray-900": "#181C32" } }, "font-family": "Poppins" };</script>
+    <script src="~/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="~/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
+    <script src="~/assets/js/vendors.bundle.js" type="text/javascript"></script>
+    <script src="~/nprogress-master/nprogress.js"></script>
+    <script src="~/assets/js/scripts.bundle.js"></script>
+    <script src="~/assets/js/MainLayout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script>
+        const permissions = {
+            0: { 'name': 'Dashboard' },
+            1: { 'name': 'Supervisor' },
+            2: { 'name': 'Role' },
+        };
+    </script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+    @*BootStrap CDN To Work All Action In BootStrap As DropDoawn .....*@
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+    @*CKEditor Js*@
+    <script src="//cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
+
+    @*AON Animation On Scroll*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/3.0.0-beta.6/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 20, // offset (in px) from the original trigger point
+            delay: 0, // values from 0 to 3000, with step 50ms
+            duration: 500, // values from 0 to 3000, with step 50ms
+            easing: 'ease-in-out', // default easing for AOS animations
+        });
+    </script>
+
+    @*Library NiceScroll*@
+    <script src="~/NiceScroll/jquery.nicescroll.js"></script>
+    <script>
+        $(function () {
+            $("body, .NotificationMenu").niceScroll();
+        });
+    </script>
+
+    @*Code To Show Message Error In Main Layout When Found Error*@
+    @if (TempData["ResError"] != null)
+    {
+        <script>
+            ShowMessage("@TempData["ResError"]");
+        </script>
+    }
+
+    @if (TempData["ResultEvaluOrdSuccessMain"] != null)
+    {
+        <script>
+        /*To Dealy Execute Function ShowMessage*/
+        setTimeout(function () { ShowMessage("@TempData["ResultEvaluOrdSuccessMain"]") }, 8000);
+        </script>
+    }
+
+    @*Code Notification Ajax To Send Data To ul List*@
+    @if (ViewBag.TypeUsre == "Applicant")
+    {
+        <script>
+            var StatusArabic, ApplicantId, JobId;
+            $.ajax({
+              url: '@Url.Action("ApplicantNotification", "Notifications")',
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              Cache: false,
+                success: function (Data) {
+                    var NotNum = Data.length;
+                    $(".NotificationsNum").html(NotNum);
+                    $.each(Data, function (index) {
+                        ApplicantId = Data[index].applicantId;
+                        JobId = Data[index].jobId;
+                      if (Data[index].applicationStatus == "Approved") {StatusArabic="قبول"} else{StatusArabic = "رفض"}
+                        $(".NotificationMenu")
+                            .append(`<li><a href = "Notifications/NotificateDetailsApplicant?ApplicantId=${ApplicantId}&JobId=${JobId}"> تم ` + StatusArabic + " طلبك في وظيفة "
+                          + Data[index].jobName + "<br/>" + " بتارخ " + Data[index].progressTime.substr(0, 10) +'</a></li><hr/>');
+                    });
+                }
+          });
+        </script>
+    }
+    else if (ViewBag.TypeUsre == "OrgnisationAdmin")
+    {
+        <script>
+            var StatusArabic;
+            $.ajax({
+              url: '@Url.Action("OrgnizationAdminNotification", "Notifications")',
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              Cache: false,
+                success: function (Data) {
+                    var NotNum = Data.length;
+                    $(".NotificationsNum").html(NotNum);
+                    $.each(Data, function (index) {
+                      if (Data[index].notificationType == 2) {
+                          $(".NotificationMenu")
+                              .append(`<li><a href="Notifications/NotificateDetailsOrgApplicant?ApplicantId=${Data[index].userSubjectId}&JobId=${Data[index].jobId}">تقدم ` + Data[index].userSubject + " لوظيفة "
+                              + Data[index].jobName + "<br/>" + " بتارخ " + Data[index].progressTime.substr(0, 10) + '</a></li><hr/>');
+                      }
+                      else
+                      {
+                          if (Data[index].applicationStatus == "Approved") { StatusArabic = "قبول" } else { StatusArabic = "رفض" }
+                          $(".NotificationMenu")
+                              .append(`<li><a href="Notifications/NotificateOrgJobEval?JobId=${Data[index].jobId}">تم ` + StatusArabic + " طلبك في نشر وظيفة "
+                              + Data[index].jobName + "<br/>" + " بتارخ " + Data[index].progressTime.substr(0, 10) + '</a></li><hr/>');
+                      }
+                  });
+              }
+          });
+        </script>
+    }
+    else
+    {
+        <script>
+            $.ajax({
+              url: '@Url.Action("AdminNotificate", "Notifications")',
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              Cache: false,
+                success: function (Data) {
+                    var NotNum = Data.length;
+                    $(".NotificationsNum").html(NotNum);
+                  $.each(Data, function (index) {
+                      if (Data[index].notificationTypeEnum == 1) {
+                          $(".NotificationMenu")
+                              .append(`<li><a href="Notifications/NotificateAdminJobEval?JobId=${Data[index].jobId}">قام ` + Data[index].userSubject + " بنشر وظيفة "
+                              + Data[index].jobName + "<br/>" + " بتارخ " + Data[index].progressTime.substr(0,10) + '</a></li><hr/>');
+                      }
+                      else
+                      {
+                          $(".NotificationMenu")
+                              .append(`<li><a href="Notifications/NotificateAdminNewUser?userId=${Data[index].userSubjectId}">اشترك مستخدم جديد في الموقع وهو ` + Data[index].userSubject + "<br/>" + " بتاريخ " + Data[index].progressTime.substr(0, 10) + '</a></li><hr/>');
+                      }
+                  });
+                }
+          });
+        </script>
+    }
+
+    @*Code To Show PopUp Screen When Delete Any Item*@
+<script>
+        function showDetails(hrefElement) {
+            var ActionName = hrefElement.getAttribute("data-ActionName");
+            var ControllerName = hrefElement.getAttribute("data-ControllerName");
+            var IdValue = hrefElement.getAttribute("data-IdValue");
+            var UserIdApplicant = hrefElement.getAttribute("data-UserId");
+            var OrderIdApplicant = hrefElement.getAttribute("data-OrderId");
+            $("#Confirm").modal("show");
+            $(".ExitPopUp").click(function () {
+                $("#Confirm").modal("hide");
+            });
+            $(".ConfirmDelete").click(function () {
+                switch (ControllerName) {
+                    case "HiringOrder":
+                        if (ActionName == "Delete") {
+                            $.ajax({
+                                url: '@Url.Action("Delete", "HiringOrder")',
+                                method: "POST",
+                                data: { Id: IdValue},
+                                success: function () {
+                                    location.reload();
+                                }
+                            });
+                        }
+                        else {
+                                $.ajax({
+                                url: '@Url.Action("DeleteHiringOrderApplicant", "HiringOrder")',
+                                method: "POST",
+                                data: { UserId: UserIdApplicant, OrderId: OrderIdApplicant},
+                                success: function () {
+                                    location.reload();
+                                }
+                            });
+                        }
+                        break;
+                    case "Orgnization":
+                         $.ajax({
+                                url: '@Url.Action("Delete", "Orgnization")',
+                                method: "POST",
+                                data: { Id: IdValue},
+                                success: function () {
+                                    location.reload();
+                                }
+                            });
+                        break;
+                    case "Role":
+                         $.ajax({
+                                url: '@Url.Action("Delete", "Role")',
+                                method: "POST",
+                                data: { Id: IdValue},
+                                success: function () {
+                                    location.reload();
+                                }
+                             });
+                        break;
+                    case "User":
+                         $.ajax({
+                                url: '@Url.Action("Delete", "User")',
+                                method: "POST",
+                                data: { Id: IdValue},
+                                success: function () {
+                                    location.reload();
+                                }
+                            });
+                        break;
+                    default:
+
+                }
+            });
+        };
+</script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

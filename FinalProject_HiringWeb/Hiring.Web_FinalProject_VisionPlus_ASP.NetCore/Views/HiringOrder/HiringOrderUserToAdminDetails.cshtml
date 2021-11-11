@@ -1,0 +1,117 @@
+﻿@model GetApplyingOrdersToUserViewModel
+
+@{
+    ViewData["Title"] = "تفاصيل طلب التوظيف";
+    int counter = 0;
+    var CreateAt = Model.CreateAt.ToString("yyyy-MM-dd");
+    var DeadLine = Model.HiringOrder.Deadline.ToString("yyyy-MM-dd");
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title" data-aos="fade-left">
+            <h2 class="card-label">
+                <span class="d-block pt-5 font-size-h2-lg">تفاصيل طلب التوظيف</span>
+            </h2>
+        </div>
+    </div>
+    <hr />
+    <div class="card-body">
+        <div class="row">
+            <div class="form-group col-md-4" data-aos="fade-left">
+                <label>إسم المتقدم</label>
+                <input asp-for="User.FullName" class="form-control" readonly />
+            </div>
+            <div class="form-group col-md-4" data-aos="fade-left">
+                <label>إيميل المتقدم</label>
+                <input asp-for="User.Email" class="form-control" readonly />
+            </div>
+            <div class="form-group col-md-4" data-aos="fade-left">
+                <label>جوال المتقدم</label>
+                <input asp-for="User.PhoneNumber" class="form-control" readonly />
+            </div>
+            <div class="form-group col-md-4" data-aos="fade-left">
+                <label>السيرة الذاتية للمتقدم</label>
+                <a target="_blank" href="~/AllFiles/@Model.User.Cv" class="form-control">إضغط لعرض CV</a>
+            </div>
+            <div class="form-group col-md-4" data-aos="fade-left">
+                <label>عنوان الوظيفة</label>
+                <input asp-for="HiringOrder.Title" class="form-control" readonly />
+            </div>
+            <div class="form-group col-md-4" data-aos="fade-left">
+                <label>تقيم المتقدم</label>
+                <input asp-for="StatusType" class="form-control" readonly />
+            </div>
+
+            <div class="form-group col-md-4" data-aos="fade-left">
+                <label>وقت التقدم</label>
+                <input asp-for="@CreateAt" class="form-control" readonly />
+            </div>
+
+            <div class="form-group col-md-4" data-aos="fade-left">
+                <label>وقت إنتهاء التقدم</label>
+                <input asp-for="@DeadLine" class="form-control" readonly />
+            </div>
+
+            <div class="form-group col-md-4" data-aos="fade-left">
+                <label>الراتب الشهري للوظيفة</label>
+                <input asp-for="HiringOrder.Salary" class="form-control" readonly />
+            </div>
+
+            <div class="form-group col-md-4" data-aos="fade-left">
+                <label>إسم الشركة الناشرة</label>
+                <input asp-for="HiringOrder.Orgnization.Name" class="form-control" readonly />
+            </div>
+            <div class="form-group col-md-4" data-aos="fade-left">
+                <label>البريد الإلكتروني للشركة</label>
+                <input asp-for="HiringOrder.Orgnization.Email" class="form-control" readonly />
+            </div>
+            <div class="form-group col-md-4" data-aos="fade-left">
+                <label>جوال الشركة</label>
+                <input asp-for="HiringOrder.Orgnization.PhoneNumber" class="form-control" readonly />
+            </div>
+
+            <div class="form-group col-md-12">
+                <label>وصف طلب التوظيف</label>
+                <hr />
+                <p>
+                    @Html.Raw(Model.HiringOrder.Description)
+                </p>
+                <hr />
+            </div>
+        </div>
+
+        @if (Model.HiringOrder.AllAttachments.Count > 0)
+        {
+            <label class="d-block font-size-h4-lg" data-aos="fade-left">مرفقات طلب التوظيف</label>
+            <table class="table table-bordered table-striped text-center">
+                <thead>
+                    <tr class="bg-primary text-white">
+                        <td>الصنف</td>
+                        <td>تفاصيله</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var file in Model.HiringOrder.AllAttachments)
+                    {
+                        counter++;
+
+                        <tr data-aos="fade-left">
+                            <td>الملف @counter</td>
+                            <td>
+                                <a target="_blank" href="~/AllFiles/@file.AttachmentUrl">إضغط لعرض المرفق</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+
+        <div class="form-group col-md-12">
+            <a class="btn btn-primary" asp-action="AllHiringOrderUserToAdmin">الرجوع للطلبات</a>
+        </div>
+
+
+    </div>
+</div>

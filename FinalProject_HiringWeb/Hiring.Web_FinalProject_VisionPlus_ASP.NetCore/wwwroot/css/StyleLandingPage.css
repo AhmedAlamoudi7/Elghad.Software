@@ -1,0 +1,34 @@
+﻿body {
+    font-family: 'Cairo', sans-serif;
+    font-weight: bold;
+    font-style: initial;
+}
+
+#mainNav .navbar-brand, #mainNav .navbar-nav .nav-item .nav-link, header.masthead .masthead-subheading,
+header.masthead .masthead-heading, .btn-xl, h1, h2, h3, h4, h5, h6, .page-section h3.section-subheading,
+.page-section .section-subheading.h3, .footer {
+    font-family: 'Cairo', sans-serif;
+    font-weight: bold;
+    font-style: initial;
+}
+
+.portfolio-caption {
+    text-align: center;
+    margin-top: 14px;
+}
+
+.imgSerevice {
+    width: 400px;
+    height: 250px;
+}
+.MyNAv {
+    position: absolute;
+}
+.timeline-image .img-fluid {
+    max-width: 100%;
+    height: 100%;
+}
+header.masthead .masthead-heading {
+    font-size: 30px
+}
+

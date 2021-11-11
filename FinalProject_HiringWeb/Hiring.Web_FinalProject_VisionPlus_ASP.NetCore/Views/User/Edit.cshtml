@@ -1,0 +1,104 @@
+﻿@model ErrorUserAddPostViewModel
+@{
+    ViewData["Title"] = "تعديل مستخدم";
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title" data-aos="fade-left">
+            <h2 class="card-label">
+                <span class="d-block pt-5 font-size-h2-lg">تعديل المستخدم</span>
+            </h2>
+        </div>
+    </div>
+    <hr />
+    <div class="card-body">
+        <form class="form-group" method="post" enctype="multipart/form-data" id="myform">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="hidden" asp-for="UserCreateDto.Id" />
+                    <input type="hidden" asp-for="UserCreateDto.NumOrgnization" />
+                    <div class="form-group " data-aos="fade-left">
+                        <label asp-for="UserCreateDto.FullName"></label>
+                        <input asp-for="UserCreateDto.FullName" class="form-control" />
+                        <span asp-validation-for="UserCreateDto.FullName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group " data-aos="fade-left">
+                        <label asp-for="UserCreateDto.Email"></label>
+                        <input asp-for="UserCreateDto.Email" class="form-control" />
+                        <span asp-validation-for="UserCreateDto.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group " data-aos="fade-left">
+                        <label asp-for="UserCreateDto.PhoneNumber"></label>
+                        <input asp-for="UserCreateDto.PhoneNumber" class="form-control" />
+                        <span asp-validation-for="UserCreateDto.PhoneNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group " data-aos="fade-left">
+                        <label asp-for="UserCreateDto.Cv"></label>
+                        <input asp-for="UserCreateDto.Cv" class="form-control" />
+                        <span asp-validation-for="UserCreateDto.Cv" class="text-danger"></span>
+                    </div>
+
+
+                    @* Start Display All Roles*@
+                    <div class="form-group  mt-3" data-aos="fade-left">
+                        <label class="form-check-label">عزيزي من فضلك إختر صلاحية أو أكثر :</label>
+                        @for (int i = 0; i < Model.UserCreateDto.AllRoles.Count; i++)
+                        {
+                            <div class="form-check m-2">
+                                <input type="hidden" asp-for="UserCreateDto.AllRoles[i].Name" />
+                                <input asp-for="UserCreateDto.AllRoles[i].IsSelected"
+                                       type="checkbox" class="form-check-input" />
+                                <label class="form-check-label">
+                                    @Model.UserCreateDto.AllRoles[i].Name
+                                </label>
+                            </div>
+                        }
+                        <span asp-validation-for="UserCreateDto.AllRoles" class="text-danger"></span>
+                    </div>
+                    @* End Display All Roles*@
+
+                </div>
+
+                @* Start Div To Add ProfileImage To User*@
+                <div class="form-group col-md-6 mt-4" data-aos="fade-left">
+                    @if (Model.UserCreateDto.ProfileImgUser != null)
+                    {
+                        <img id="ProfileImg" class="Img_Profile_body img-fluid img-thumbnail "
+                             src="data:image/*;base64,@(Convert.ToBase64String(Model.UserCreateDto.ProfileImgUser)) " />
+                    }
+                    else
+                    {
+                        <img id="ProfileImg" class="Img_Profile_body img-fluid img-thumbnail"
+                             src="~/Images/blank-profile.png" />
+                    }
+
+                    <input type="file" class="form-control mt-3 col-md-9"
+                           name="ProfileImage"
+                           onchange="document.getElementById('ProfileImg').src= window.URL.createObjectURL(this.files[0])" />
+                    <span asp-validation-for="UserCreateDto.ProfileImgUser" class="text-danger"></span>
+                </div>
+                @* End Div To Add ProfileImage To User*@
+            </div>
+            <div class="Webfooter form-group col-sm-12" data-aos="fade-left">
+                <button type="submit" class="btn btn-primary">تعديل مستخدم</button>
+                <a asp-action="Index" class="btn btn-primary">إلغاء</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+<script>
+    $("#myform input:checkbox").change(function () {
+        $("#myform input:checkbox").prop("checked", false);
+        $(this).prop("checked", true);
+    });
+</script>
+}

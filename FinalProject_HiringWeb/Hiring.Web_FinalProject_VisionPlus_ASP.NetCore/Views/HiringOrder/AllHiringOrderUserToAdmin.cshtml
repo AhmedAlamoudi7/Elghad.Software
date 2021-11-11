@@ -1,0 +1,110 @@
+﻿@model List<GroupHiringUserToAdmin>
+@{
+    ViewData["Title"] = "DisplayALLHiringUserAdmin";
+
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title" data-aos="fade-left">
+            <h4 class="card-label">
+                <span class="d-block pt-5 font-size-h2-lg">جميع المتقدمين</span>
+            </h4>
+        </div>
+    </div>
+    <hr />
+    <div class="card-body">
+        @if (Model.Any())
+        {
+            @foreach (var MainGrp in Model)
+            {
+                <h2 class="d-block pt-5 font-size-h2-lg text-center" style="font-weight:bold;" data-aos="fade-left">وظيفة/ @MainGrp.Title</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped text-center mt-3">
+                        <thead>
+                            <tr class="bg-primary text-white">
+                                <td>إسم المتقدم</td>
+                                <td>وقت إنتهاء التقدم</td>
+                                <td>التقييم</td>
+                                <td>الشركة الناشرة</td>
+                                <td>العمليات</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var Order in MainGrp.AllHiringOrders)
+                            {
+
+                                <tr data-aos="fade-down">
+                                    <td class="tab_col_padding">@Order.User.FullName</td>
+                                    <td class="tab_col_padding">@Order.HiringOrder.Deadline.ToString("yyyy-MM-dd")</td>
+                                    <td class="tab_col_padding">@Order.StatusType</td>
+                                    <td class="tab_col_padding">@Order.HiringOrder.Orgnization.Name</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="MenuProcess" data-bs-toggle="dropdown" aria-expanded="false">
+                                                عرض العمليات
+                                            </button>
+                                            <ul class="dropdown-menu DropdownMenuTable" aria-labelledby="MenuProcess">
+                                                <li><a href="~/HiringOrder/HiringOrderUserToAdminDetails?UserId=@Order.UserId&OrderId=@Order.HiringOrderId">تفاصيل</a></li>
+                                                @if (Order.StatusType == StatusHiringOrderEnum.Pending)
+                                                {
+                                                    <li>
+                                                        <a href="~/HiringOrder/EvaluationApplicants?UserId=@Order.UserId
+                                                                                &HiringOrdId=@Order.HiringOrderId
+                                                                                &status=@StatusHiringOrderEnum.Approved
+                                                                                &ViewName=AllHiringOrderUserToAdmin">
+                                                            قبول
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="~/HiringOrder/EvaluationApplicants?UserId=@Order.UserId
+                                                                                &HiringOrdId=@Order.HiringOrderId
+                                                                                &status=@StatusHiringOrderEnum.Rejected
+                                                                                &ViewName=AllHiringOrderUserToAdmin">
+                                                            رفض
+                                                        </a>
+                                                    </li>
+                                                }
+                                                else if (Order.StatusType == StatusHiringOrderEnum.Approved)
+                                                {
+                                                    <li>
+                                                        <a href="~/HiringOrder/EvaluationApplicants?UserId=@Order.UserId
+                                                                                &HiringOrdId=@Order.HiringOrderId
+                                                                                &status=@StatusHiringOrderEnum.Rejected
+                                                                                &ViewName=AllHiringOrderUserToAdmin">
+                                                            رفض
+                                                        </a>
+                                                    </li>
+                                                }
+                                                else if (Order.StatusType == StatusHiringOrderEnum.Rejected)
+                                                {
+                                                    <li>
+                                                        <a href="~/HiringOrder/EvaluationApplicants?UserId=@Order.UserId
+                                                                                &HiringOrdId=@Order.HiringOrderId
+                                                                                &status=@StatusHiringOrderEnum.Approved
+                                                                                &ViewName=AllHiringOrderUserToAdmin">
+                                                            قبول
+                                                        </a>
+                                                    </li>
+                                                }
+
+                                                <li>
+                                                    <a href="~/HiringOrder/DeleteHiringOrderApplicant?UserId=@Order.UserId&OrderId=@Order.HiringOrderId">حذف</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert alert-info mt-3">عزيزي لا يوجد أي متقدمين إلى الآن!</div>
+        }
+
+    </div>
+</div>

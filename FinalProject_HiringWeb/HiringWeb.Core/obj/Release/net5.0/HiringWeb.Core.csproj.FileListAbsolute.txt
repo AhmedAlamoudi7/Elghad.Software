@@ -1,0 +1,12 @@
+E:\FinalProject_VisionPlus_HiringWeb\HiringWeb.Core\bin\Release\net5.0\HiringWeb.Core.deps.json
+E:\FinalProject_VisionPlus_HiringWeb\HiringWeb.Core\bin\Release\net5.0\HiringWeb.Core.dll
+E:\FinalProject_VisionPlus_HiringWeb\HiringWeb.Core\bin\Release\net5.0\ref\HiringWeb.Core.dll
+E:\FinalProject_VisionPlus_HiringWeb\HiringWeb.Core\bin\Release\net5.0\HiringWeb.Core.pdb
+E:\FinalProject_VisionPlus_HiringWeb\HiringWeb.Core\obj\Release\net5.0\HiringWeb.Core.csproj.AssemblyReference.cache
+E:\FinalProject_VisionPlus_HiringWeb\HiringWeb.Core\obj\Release\net5.0\HiringWeb.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\FinalProject_VisionPlus_HiringWeb\HiringWeb.Core\obj\Release\net5.0\HiringWeb.Core.AssemblyInfoInputs.cache
+E:\FinalProject_VisionPlus_HiringWeb\HiringWeb.Core\obj\Release\net5.0\HiringWeb.Core.AssemblyInfo.cs
+E:\FinalProject_VisionPlus_HiringWeb\HiringWeb.Core\obj\Release\net5.0\HiringWeb.Core.csproj.CoreCompileInputs.cache
+E:\FinalProject_VisionPlus_HiringWeb\HiringWeb.Core\obj\Release\net5.0\HiringWeb.Core.dll
+E:\FinalProject_VisionPlus_HiringWeb\HiringWeb.Core\obj\Release\net5.0\ref\HiringWeb.Core.dll
+E:\FinalProject_VisionPlus_HiringWeb\HiringWeb.Core\obj\Release\net5.0\HiringWeb.Core.pdb
